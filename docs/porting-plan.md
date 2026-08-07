@@ -1,0 +1,292 @@
+# Porting plan
+
+*Status: draft v0.1 · 2026-08-07*
+
+Source material lives in the originating project's `.claude/` directory, assumed available
+as a sibling checkout at `../adguard-wallet`:
+
+- `.claude/skills/{flutter-*,dart-*}` — the 31 informational skills (110 files)
+- `.claude/rules/ast-index.md` — the ast-index search policy
+
+Per-skill details (file census, authorship, scrub notes) live in
+[source-inventory.md](source-inventory.md). Genericization rules and the known-literal
+list live in [design.md](design.md#genericization). Each phase leaves the repo in a
+coherent, committable state; keep the checkboxes current as work lands.
+
+## Port procedure (applies to every skill)
+
+1. **Copy the whole tree**: `cp -R ../adguard-wallet/.claude/skills/<name> skills/<name>`
+   — including `references/`, `assets/`, `scripts/` subtrees. Never flatten a routed
+   skill into a single file.
+2. **Scrub pass**: apply the skill's scrub notes from the inventory (most skills: none).
+   Then check the skill individually:
+   `grep -rniE "wallet|AW-[0-9]|aiguard|adguard" skills/<name>/` must return nothing.
+3. **Frontmatter check**: `name` matches the directory (kebab-case), `description`
+   present and accurate after scrubbing, `metadata.author` **preserved verbatim** where
+   it exists (9 skills — see inventory).
+4. **Link check**: relative links to `references/`/`assets/` files still resolve; no
+   absolute paths anywhere in the tree.
+5. Tick the checkbox here and commit (`feat: port <name> skill`).
+
+## Phase 0 — skeleton
+
+Repo scaffold, plugin manifest, marketplace file. Exact contents below — create verbatim,
+then commit (`chore: repo skeleton and plugin manifest`).
+
+- [ ] `.claude-plugin/plugin.json`
+- [ ] `.claude-plugin/marketplace.json`
+- [ ] `CLAUDE.md`
+- [ ] `README.md`
+- [ ] `LICENSE` (MIT, standard text, copyright holder "Dmitry Seloustev")
+- [ ] `CHANGELOG.md`
+- [ ] `.gitignore`
+
+`.claude-plugin/plugin.json`:
+
+```json
+{
+  "name": "likbez",
+  "description": "Flutter/Dart knowledge pack for Claude Code: reference and how-to skills that educate the crew — architecture, UI, navigation, data, testing, tooling.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Dmitry Seloustev",
+    "email": "d.seloustev@adguard.com"
+  },
+  "homepage": "https://github.com/dseloustev/likbez",
+  "repository": "https://github.com/dseloustev/likbez",
+  "license": "MIT",
+  "keywords": [
+    "flutter",
+    "dart",
+    "knowledge",
+    "reference",
+    "how-to",
+    "skills"
+  ]
+}
+```
+
+`.claude-plugin/marketplace.json`:
+
+```json
+{
+  "name": "likbez",
+  "owner": {
+    "name": "Dmitry Seloustev",
+    "email": "d.seloustev@adguard.com"
+  },
+  "plugins": [
+    {
+      "name": "likbez",
+      "source": "./",
+      "description": "Flutter/Dart knowledge pack: reference and how-to skills that educate the crew."
+    }
+  ]
+}
+```
+
+`CLAUDE.md`:
+
+```markdown
+# CLAUDE.md
+
+Guidance for Claude Code when working in this repository.
+
+## Project
+
+**Likbez** — a Claude Code plugin packaging a Flutter/Dart knowledge pack: 31 reference
+and how-to skills plus the `ast-index` search policy. Companion to
+[artel](https://github.com/dseloustev/artel) (the workflow plugin): the crew works,
+likbez educates it. This repo is both the plugin and its own single-plugin marketplace
+(`.claude-plugin/marketplace.json`), installable straight from GitHub.
+
+Read these before making changes:
+
+- [docs/design.md](docs/design.md) — architecture, genericization rules, attribution
+  policy, decision log. **Record notable decisions in its decision log.**
+- [docs/porting-plan.md](docs/porting-plan.md) — phased plan. Keep checkboxes current.
+- [docs/source-inventory.md](docs/source-inventory.md) — per-skill source paths, file
+  census, and scrub notes.
+
+## Source material
+
+The skills originate from a **sibling checkout** of the source project (private Flutter
+repo), normally at `../adguard-wallet`: `.claude/skills/{flutter-*,dart-*}` and
+`.claude/rules/ast-index.md`.
+
+When porting, **genericize** — never copy project literals (wallet paths, launch flags,
+`make` targets, project names). The complete known-literal list is in design.md. After
+any skill change, the scrub gate must pass:
+`grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" skills/` → no hits.
+
+## Conventions
+
+- Plugin layout: `.claude-plugin/plugin.json` (manifest), `skills/<name>/SKILL.md` with
+  `references/`, `assets/`, `scripts/` subtrees preserved. Installed skills surface as
+  `/likbez:<name>`.
+- Skills are **knowledge, not process** — no agents, no hooks, no orchestration, no host
+  state, no config. If a skill seems to need any of those, stop and record a decision.
+- Preserve `metadata.author` frontmatter verbatim — 9 skills carry third-party
+  attribution (see design.md, "Attribution and licensing").
+- All docs and commit messages in English. No absolute paths — repo-relative paths or
+  the `../adguard-wallet` / `../artel` sibling convention only.
+- Commits: conventional commits (`feat:`, `fix:`, `docs:`, `chore:`). Subject line only,
+  no trailers.
+- Versioning: semver; keep `CHANGELOG.md` and `.claude-plugin/plugin.json` `version` in
+  sync.
+
+## Publishing
+
+Repo home: `https://github.com/dseloustev/likbez` (corporate account, **private until
+the third-party licensing question in design.md is resolved**). `gh` operations need the
+corporate profile: `GH_CONFIG_DIR=~/.config/gh-adguard gh …`. Git identity for commits
+here is the corporate one (`d.seloustev@adguard.com`, set in local git config).
+
+## Testing a change
+
+Local smoke test: `/plugin marketplace add <path-to-this-repo>` then
+`/plugin install likbez@likbez`; confirm skills appear under the `likbez:` namespace and
+a routed skill (e.g. `/likbez:flutter-drift`) can read its own `references/` files.
+```
+
+`README.md`:
+
+```markdown
+# likbez
+
+A Claude Code plugin: a Flutter/Dart knowledge pack of 32 reference and how-to skills —
+architecture, UI and layout, navigation, networking, localization, persistence, testing,
+runtime debugging, language idiom, and the `ast-index` code-search policy.
+
+Companion to [artel](https://github.com/dseloustev/artel), the spec-driven autonomous
+feature-development workflow plugin. The names are an era-matched pair: an *artel* is a
+workers' cooperative; *likbez* was the literacy campaign that educated it. **The crew
+works; likbez educates it.**
+
+## Install
+
+    /plugin marketplace add dseloustev/likbez
+    /plugin install likbez@likbez
+
+Skills surface under the `likbez:` namespace, e.g. `/likbez:flutter-architecture`.
+
+## What's inside
+
+<!-- Generate this catalog from docs/source-inventory.md cluster headings once skills
+     land: one table per cluster (Architecture & conventions, UI & layout, Navigation,
+     Networking & serialization, Localization, Persistence, Testing & quality,
+     Runtime & debugging, Language & tooling, Search policy), columns: skill, one-line
+     purpose. -->
+
+## License
+
+MIT. Nine skills carry third-party author attribution in their frontmatter — see
+[docs/design.md](docs/design.md) "Attribution and licensing".
+```
+
+`CHANGELOG.md`:
+
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file. The format follows
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow
+[semver](https://semver.org/).
+
+## [Unreleased]
+```
+
+`.gitignore`:
+
+```
+.DS_Store
+```
+
+## Phase 1 — architecture & conventions
+
+The only phase with real editorial work: `flutter-conventions` is the wallet's checklist
+and must be rewritten as a generic Flutter checklist (scrub notes in the inventory and
+design.md's known-literal table).
+
+- [ ] Port `flutter-architecture` (5 refs, 3 assets; author: MADTeacher — preserve).
+- [ ] Port `flutter-apply-architecture-best-practices` (single-file).
+- [ ] Port + genericize `flutter-conventions` (SKILL.md + checklist.md): retitle
+      "Flutter convention checklist"; generalize the key-material / locker-path /
+      `mainAccount` items to stack-neutral security guidance.
+
+## Phase 2 — UI, layout, navigation
+
+- [ ] Port `flutter-adaptive-ui` (6 refs, 2 assets; MADTeacher).
+- [ ] Port `flutter-build-responsive-layout` (single-file).
+- [ ] Port `flutter-fix-layout-issues` (single-file).
+- [ ] Port `flutter-animations` (6 refs, 4 assets; MADTeacher).
+- [ ] Port `flutter-add-widget-preview` (single-file).
+- [ ] Port `flutter-duit-bdui` (4 refs).
+- [ ] Port `flutter-navigation` (4 refs, 4 assets; MADTeacher).
+- [ ] Port `flutter-setup-declarative-routing` (single-file).
+
+## Phase 3 — data: networking, serialization, localization, persistence
+
+- [ ] Port `flutter-networking` (5 refs, 7 assets, 1 script; MADTeacher).
+- [ ] Port `flutter-use-http-package` (single-file).
+- [ ] Port `flutter-implement-json-serialization` (single-file).
+- [ ] Port `flutter-internationalization` (3 refs, 2 assets; MADTeacher).
+- [ ] Port `flutter-setup-localization` (single-file).
+- [ ] Port `flutter-drift` (7 refs; MADTeacher).
+- [ ] Port `dart-drift` (7 refs, 1 script; MADTeacher).
+
+## Phase 4 — testing & quality
+
+- [ ] Port `flutter-testing` (6 refs, 1 script; MADTeacher).
+- [ ] Port `flutter-add-widget-test` (single-file).
+- [ ] Port `flutter-add-integration-test` (single-file).
+- [ ] Port `dart-add-unit-test` (single-file).
+- [ ] Port `dart-generate-test-mocks` (single-file).
+- [ ] Port `dart-collect-coverage` (single-file).
+- [ ] Port `dart-migrate-to-checks-package` (single-file).
+- [ ] Port `dart-run-static-analysis` (single-file).
+
+## Phase 5 — runtime, tooling, ast-index
+
+- [ ] Port + genericize `flutter-runtime` (single-file): conditionalize the
+      `--dart-define-from-file` line (design.md known-literal table).
+- [ ] Port `dart-fix-runtime-errors` (single-file).
+- [ ] Port `dart-use-pattern-matching` (single-file).
+- [ ] Port `dart-build-cli-app` (single-file).
+- [ ] Port `dart-resolve-package-conflicts` (single-file).
+- [ ] Port + genericize `../adguard-wallet/.claude/rules/ast-index.md` →
+      `skills/ast-index/SKILL.md`: add frontmatter (`name: ast-index`, description
+      covering "mandatory-first code search policy + subagent prompt block"), replace
+      `make g` / `make codegen` with "your project's codegen command". Keep the verbatim
+      subagent block, read rules, scoping examples, and empty-result triage intact.
+
+## Phase 6 — publish
+
+- [ ] Run the scrub gate over the full tree (design.md) — `CLEAN` required. Also
+      `grep -rn "/Users/" skills/` → empty.
+- [ ] Local marketplace smoke test: `/plugin marketplace add <path>` +
+      `/plugin install likbez@likbez`; spot-check one routed skill
+      (`/likbez:flutter-drift` reads its `references/`), one single-file skill, and
+      `/likbez:ast-index`.
+- [ ] Fill README's skill catalog from the inventory clusters.
+- [ ] **Resolve the MADTeacher licensing question** (design.md open question 1). Repo
+      stays private until resolved.
+- [ ] Create `dseloustev/likbez` (private) with the corporate profile
+      (`GH_CONFIG_DIR=~/.config/gh-adguard gh repo create …`), push, verify the install
+      path from GitHub.
+- [ ] Update CHANGELOG (`0.1.0` entry), confirm plugin.json version matches, tag
+      `v0.1.0`.
+
+## Source → plugin map
+
+| Source (`../adguard-wallet/.claude/…`) | Likbez | Action |
+|---|---|---|
+| `skills/{flutter-architecture,flutter-apply-architecture-best-practices}` | `skills/` | copy (Phase 1) |
+| `skills/flutter-conventions` | `skills/` | port + genericize checklist (Phase 1) |
+| `skills/{flutter-adaptive-ui,flutter-build-responsive-layout,flutter-fix-layout-issues,flutter-animations,flutter-add-widget-preview,flutter-duit-bdui,flutter-navigation,flutter-setup-declarative-routing}` | `skills/` | copy (Phase 2) |
+| `skills/{flutter-networking,flutter-use-http-package,flutter-implement-json-serialization,flutter-internationalization,flutter-setup-localization,flutter-drift,dart-drift}` | `skills/` | copy (Phase 3) |
+| `skills/{flutter-testing,flutter-add-widget-test,flutter-add-integration-test,dart-add-unit-test,dart-generate-test-mocks,dart-collect-coverage,dart-migrate-to-checks-package,dart-run-static-analysis}` | `skills/` | copy (Phase 4) |
+| `skills/flutter-runtime` | `skills/` | port + conditionalize launch note (Phase 5) |
+| `skills/{dart-fix-runtime-errors,dart-use-pattern-matching,dart-build-cli-app,dart-resolve-package-conflicts}` | `skills/` | copy (Phase 5) |
+| `rules/ast-index.md` | `skills/ast-index/` | port + frontmatter + genericize codegen refs (Phase 5) |
+| everything else in `.claude/` (workflow skills, agents, hooks, contracts, operator docs) | — | out of scope: artel's domain (or already ported there) |
