@@ -1,0 +1,20 @@
+{
+  "name": "likbez",
+  "description": "Flutter/Dart knowledge pack for Claude Code: reference and how-to skills that educate the crew — architecture, UI, navigation, data, testing, tooling.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Dmitry Seloustev",
+    "email": "d.seloustev@adguard.com"
+  },
+  "homepage": "https://github.com/dseloustev/likbez",
+  "repository": "https://github.com/dseloustev/likbez",
+  "license": "MIT",
+  "keywords": [
+    "flutter",
+    "dart",
+    "knowledge",
+    "reference",
+    "how-to",
+    "skills"
+  ]
+}

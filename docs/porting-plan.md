@@ -33,13 +33,13 @@ coherent, committable state; keep the checkboxes current as work lands.
 Repo scaffold, plugin manifest, marketplace file. Exact contents below — create verbatim,
 then commit (`chore: repo skeleton and plugin manifest`).
 
-- [ ] `.claude-plugin/plugin.json`
-- [ ] `.claude-plugin/marketplace.json`
-- [ ] `CLAUDE.md`
-- [ ] `README.md`
-- [ ] `LICENSE` (MIT, standard text, copyright holder "Dmitry Seloustev")
-- [ ] `CHANGELOG.md`
-- [ ] `.gitignore`
+- [x] `.claude-plugin/plugin.json`
+- [x] `.claude-plugin/marketplace.json`
+- [x] `CLAUDE.md`
+- [x] `README.md`
+- [x] `LICENSE` (MIT, standard text, copyright holder "Dmitry Seloustev")
+- [x] `CHANGELOG.md`
+- [x] `.gitignore`
 
 `.claude-plugin/plugin.json`:
 

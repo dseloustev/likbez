@@ -1,0 +1,14 @@
+{
+  "name": "likbez",
+  "owner": {
+    "name": "Dmitry Seloustev",
+    "email": "d.seloustev@adguard.com"
+  },
+  "plugins": [
+    {
+      "name": "likbez",
+      "source": "./",
+      "description": "Flutter/Dart knowledge pack: reference and how-to skills that educate the crew."
+    }
+  ]
+}
