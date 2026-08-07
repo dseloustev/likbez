@@ -190,8 +190,12 @@ a routed skill (e.g. `/likbez:flutter-drift`) can read its own `references/` fil
 
 ## Open questions
 
-1. **Licensing of the 9 MADTeacher skills** (blocking public release; see above). Resolve
-   by locating the original distribution and its license, or obtaining permission.
+1. **Licensing of the 9 MADTeacher skills** — **resolved 2026-08-07**: the original
+   distribution is `MADTeacher/mad-agents-skills` (MIT, © 2026 Stanislav Chernyshev);
+   the unattributed how-tos trace to `flutter/agent-plugins` and `dart-lang/skills`
+   (both BSD-3). Redistribution is permitted with notices retained — see the licensing
+   decision below and `THIRD-PARTY-NOTICES.md` (added in Phase 5.5). Public release is
+   unblocked; timing stays a Phase 6 call.
 2. **Internet-sourced extensions (post-v1).** The founding decision says likbez will be
    "extended later from the internet" (official Flutter/Dart docs, community skill
    packs). Undecided: curation criteria, whether new skills join the existing `flutter-*`
@@ -222,3 +226,29 @@ a routed skill (e.g. `/likbez:flutter-drift`) can read its own `references/` fil
 - **2026-08-07 — Founding docs: artel's 3-doc model (user-approved).** `design.md` +
   `porting-plan.md` + `source-inventory.md`, written so an agent can build the plugin
   from them without further input.
+- **2026-08-07 — Cluster split: 5 plugins in one marketplace (user-approved).** The repo
+  becomes a multi-plugin marketplace — `likbez` (core), `likbez-ui`, `likbez-data`,
+  `likbez-testing`, `likbez-tooling` under `plugins/` — because Claude Code has no
+  per-skill disable and 32 always-loaded skill descriptions cost real context, while
+  per-project plugin enablement (`enabledPlugins`) exists. Lockstep versioning, one
+  CHANGELOG. Restructure lands before porting (Phase 0.5). Full design:
+  [superpowers/specs/2026-08-07-cluster-split-advisor-upstream-sync-design.md](superpowers/specs/2026-08-07-cluster-split-advisor-upstream-sync-design.md).
+- **2026-08-07 — `project-setup` advisor skill (user-approved).** Core ships one
+  deliberate **process carve-out**: a skill that analyzes the host project
+  (`pubspec.yaml` etc.), recommends clusters with reasons, asks about planned
+  technologies, and — only with explicit consent — writes `enabledPlugins` to the
+  project's `.claude/settings.json` and/or a guidance note to the host CLAUDE.md.
+  All other skills remain pure knowledge; the "no process" non-goal is amended by
+  exactly this one skill.
+- **2026-08-07 — `upstream-sync` dev skill + `docs/upstreams.md` registry
+  (user-approved).** Skill updates flow from upstreams through a repo-local dev skill
+  (`.claude/skills/upstream-sync/`, never shipped) driven by a per-skill registry
+  (upstream repo/path, last-synced SHA, genericization deltas). Four upstreams:
+  `MADTeacher/mad-agents-skills`, `flutter/agent-plugins`, `dart-lang/skills`
+  (canonical for `dart-*`), and `../adguard-wallet` for the in-house trio. New upstream
+  skills are proposed as candidates, never auto-added.
+- **2026-08-07 — Third-party licensing resolved (user-approved).** All upstreams are
+  permissively licensed (MIT / BSD-3). Add `THIRD-PARTY-NOTICES.md` with the three
+  notices plus per-skill provenance via the registry; verify `flutter-duit-bdui`
+  against MADTeacher's copy during its port and add attribution if derived. Open
+  question 1 is closed; the repo may go public at Phase 6.
