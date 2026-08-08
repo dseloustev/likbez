@@ -266,7 +266,7 @@ design.md's known-literal table).
 - [x] Port `flutter-add-integration-test` (single-file).
 - [x] Port `dart-add-unit-test` (single-file).
 - [x] Port `dart-generate-test-mocks` (single-file).
-- [ ] Port `dart-collect-coverage` (single-file).
+- [x] Port `dart-collect-coverage` (single-file).
 - [ ] Port `dart-migrate-to-checks-package` (single-file).
 - [ ] Port `dart-run-static-analysis` (single-file).
 
