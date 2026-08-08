@@ -254,7 +254,7 @@ design.md's known-literal table).
 - [x] Port `flutter-networking` (5 refs, 7 assets, 1 script; MADTeacher).
 - [x] Port `flutter-use-http-package` (single-file).
 - [x] Port `flutter-implement-json-serialization` (single-file).
-- [ ] Port `flutter-internationalization` (3 refs, 2 assets; MADTeacher).
+- [x] Port `flutter-internationalization` (3 refs, 2 assets; MADTeacher).
 - [ ] Port `flutter-setup-localization` (single-file).
 - [ ] Port `flutter-drift` (7 refs; MADTeacher).
 - [ ] Port `dart-drift` (7 refs, 1 script; MADTeacher).
