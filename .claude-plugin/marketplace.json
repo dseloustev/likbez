@@ -7,8 +7,28 @@
   "plugins": [
     {
       "name": "likbez",
-      "source": "./",
-      "description": "Flutter/Dart knowledge pack: reference and how-to skills that educate the crew."
+      "source": "./plugins/likbez",
+      "description": "Core: project-setup advisor, ast-index policy, architecture and conventions."
+    },
+    {
+      "name": "likbez-ui",
+      "source": "./plugins/likbez-ui",
+      "description": "UI: adaptive/responsive layout, animations, previews, BDUI, navigation."
+    },
+    {
+      "name": "likbez-data",
+      "source": "./plugins/likbez-data",
+      "description": "Data: networking, serialization, localization, Drift persistence."
+    },
+    {
+      "name": "likbez-testing",
+      "source": "./plugins/likbez-testing",
+      "description": "Testing: unit/widget/integration tests, mocks, coverage, static analysis."
+    },
+    {
+      "name": "likbez-tooling",
+      "source": "./plugins/likbez-tooling",
+      "description": "Tooling: runtime debugging, error fixing, language idiom, CLI, dependencies."
     }
   ]
 }

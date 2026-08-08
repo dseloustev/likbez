@@ -1,0 +1,13 @@
+{
+  "name": "likbez-tooling",
+  "description": "Likbez tooling cluster: runtime debugging, error fixing, Dart language idiom, CLI construction, and dependency management skills.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Dmitry Seloustev",
+    "email": "d.seloustev@adguard.com"
+  },
+  "homepage": "https://github.com/dseloustev/likbez",
+  "repository": "https://github.com/dseloustev/likbez",
+  "license": "MIT",
+  "keywords": ["dart", "flutter", "runtime", "cli", "dependencies"]
+}

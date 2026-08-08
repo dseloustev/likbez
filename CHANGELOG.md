@@ -5,3 +5,8 @@ All notable changes to this project will be documented in this file. The format 
 [semver](https://semver.org/).
 
 ## [Unreleased]
+
+### Changed
+
+- Restructured into a five-plugin marketplace (`likbez`, `likbez-ui`,
+  `likbez-data`, `likbez-testing`, `likbez-tooling`) with lockstep versioning.
