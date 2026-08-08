@@ -252,7 +252,7 @@ design.md's known-literal table).
 ## Phase 3 — data: networking, serialization, localization, persistence (→ plugins/likbez-data/skills/)
 
 - [x] Port `flutter-networking` (5 refs, 7 assets, 1 script; MADTeacher).
-- [ ] Port `flutter-use-http-package` (single-file).
+- [x] Port `flutter-use-http-package` (single-file).
 - [ ] Port `flutter-implement-json-serialization` (single-file).
 - [ ] Port `flutter-internationalization` (3 refs, 2 assets; MADTeacher).
 - [ ] Port `flutter-setup-localization` (single-file).
