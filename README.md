@@ -28,5 +28,8 @@ Core skills surface as `/likbez:<name>`, cluster skills as
 
 ## License
 
-MIT. Nine skills carry third-party author attribution in their frontmatter — see
-[docs/design.md](docs/design.md) "Attribution and licensing".
+MIT for likbez itself. Ported skills originate from third-party repositories
+under MIT and BSD 3-Clause — see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)
+and the per-skill provenance in [docs/upstreams.md](docs/upstreams.md). Nine+
+skills also carry author attribution in their frontmatter (see
+[docs/design.md](docs/design.md), "Attribution and licensing").
