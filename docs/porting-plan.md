@@ -231,7 +231,7 @@ and must be rewritten as a generic Flutter checklist (scrub notes in the invento
 design.md's known-literal table).
 
 - [x] Port `flutter-architecture` (5 refs, 3 assets; author: MADTeacher — preserve).
-- [ ] Port `flutter-apply-architecture-best-practices` (single-file).
+- [x] Port `flutter-apply-architecture-best-practices` (single-file).
 - [ ] Port + genericize `flutter-conventions` (SKILL.md + checklist.md): retitle
       "Flutter convention checklist"; generalize the key-material / locker-path /
       `mainAccount` items to stack-neutral security guidance.
