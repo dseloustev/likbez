@@ -272,7 +272,7 @@ design.md's known-literal table).
 
 ## Phase 5 — runtime, tooling, ast-index (→ plugins/likbez-tooling/skills/, ast-index → plugins/likbez/skills/)
 
-- [ ] Port + genericize `flutter-runtime` (single-file): conditionalize the
+- [x] Port + genericize `flutter-runtime` (single-file): conditionalize the
       `--dart-define-from-file` line (design.md known-literal table).
 - [ ] Port `dart-fix-runtime-errors` (single-file).
 - [ ] Port `dart-use-pattern-matching` (single-file).
