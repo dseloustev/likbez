@@ -245,7 +245,7 @@ design.md's known-literal table).
 - [x] Port `flutter-fix-layout-issues` (single-file).
 - [x] Port `flutter-animations` (6 refs, 4 assets; MADTeacher).
 - [x] Port `flutter-add-widget-preview` (single-file).
-- [ ] Port `flutter-duit-bdui` (4 refs).
+- [x] Port `flutter-duit-bdui` (4 refs).
 - [ ] Port `flutter-navigation` (4 refs, 4 assets; MADTeacher).
 - [ ] Port `flutter-setup-declarative-routing` (single-file).
 
