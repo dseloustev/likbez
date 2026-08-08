@@ -230,7 +230,7 @@ The only phase with real editorial work: `flutter-conventions` is the wallet's c
 and must be rewritten as a generic Flutter checklist (scrub notes in the inventory and
 design.md's known-literal table).
 
-- [ ] Port `flutter-architecture` (5 refs, 3 assets; author: MADTeacher — preserve).
+- [x] Port `flutter-architecture` (5 refs, 3 assets; author: MADTeacher — preserve).
 - [ ] Port `flutter-apply-architecture-best-practices` (single-file).
 - [ ] Port + genericize `flutter-conventions` (SKILL.md + checklist.md): retitle
       "Flutter convention checklist"; generalize the key-material / locker-path /
