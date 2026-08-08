@@ -275,7 +275,7 @@ design.md's known-literal table).
 - [x] Port + genericize `flutter-runtime` (single-file): conditionalize the
       `--dart-define-from-file` line (design.md known-literal table).
 - [x] Port `dart-fix-runtime-errors` (single-file).
-- [ ] Port `dart-use-pattern-matching` (single-file).
+- [x] Port `dart-use-pattern-matching` (single-file).
 - [ ] Port `dart-build-cli-app` (single-file).
 - [ ] Port `dart-resolve-package-conflicts` (single-file).
 - [ ] Port + genericize `../adguard-wallet/.claude/rules/ast-index.md` →
