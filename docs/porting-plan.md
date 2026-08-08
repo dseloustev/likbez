@@ -277,7 +277,7 @@ design.md's known-literal table).
 - [x] Port `dart-fix-runtime-errors` (single-file).
 - [x] Port `dart-use-pattern-matching` (single-file).
 - [x] Port `dart-build-cli-app` (single-file).
-- [ ] Port `dart-resolve-package-conflicts` (single-file).
+- [x] Port `dart-resolve-package-conflicts` (single-file).
 - [ ] Port + genericize `../adguard-wallet/.claude/rules/ast-index.md` →
       `plugins/likbez/skills/ast-index/SKILL.md`: add frontmatter (`name: ast-index`, description
       covering "mandatory-first code search policy + subagent prompt block"), replace
