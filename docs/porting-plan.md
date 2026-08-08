@@ -262,7 +262,7 @@ design.md's known-literal table).
 ## Phase 4 — testing & quality (→ plugins/likbez-testing/skills/)
 
 - [x] Port `flutter-testing` (6 refs, 1 script; MADTeacher).
-- [ ] Port `flutter-add-widget-test` (single-file).
+- [x] Port `flutter-add-widget-test` (single-file).
 - [ ] Port `flutter-add-integration-test` (single-file).
 - [ ] Port `dart-add-unit-test` (single-file).
 - [ ] Port `dart-generate-test-mocks` (single-file).
