@@ -268,7 +268,7 @@ design.md's known-literal table).
 - [x] Port `dart-generate-test-mocks` (single-file).
 - [x] Port `dart-collect-coverage` (single-file).
 - [x] Port `dart-migrate-to-checks-package` (single-file).
-- [ ] Port `dart-run-static-analysis` (single-file).
+- [x] Port `dart-run-static-analysis` (single-file).
 
 ## Phase 5 — runtime, tooling, ast-index (→ plugins/likbez-tooling/skills/, ast-index → plugins/likbez/skills/)
 
