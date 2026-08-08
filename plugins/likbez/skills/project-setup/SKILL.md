@@ -59,7 +59,8 @@ full menu.
 
 Ask one question: which of these does the user plan to add — a database, deep
 links or web URLs, backend-driven UI, localization, HTTP APIs, runtime debugging, CLI tooling,
-or none? Map the answers through the same signal table and extend the
+or none? Map the answers through the same signal table (runtime debugging maps
+to `likbez-tooling` directly — it has no pubspec signal) and extend the
 recommendation, marking those rows "planned" rather than "detected".
 
 ## Step 4 — apply, with explicit consent
