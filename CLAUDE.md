@@ -4,10 +4,12 @@ Guidance for Claude Code when working in this repository.
 
 ## Project
 
-**Likbez** — a Claude Code plugin packaging a Flutter/Dart knowledge pack: 31 reference
-and how-to skills plus the `ast-index` search policy. Companion to
+**Likbez** — a Claude Code plugin packaging a Flutter/Dart knowledge pack: 33 skills across five cluster
+plugins — `likbez` (core), `likbez-ui`, `likbez-data`, `likbez-testing`,
+`likbez-tooling` — including the `ast-index` search policy and the
+`project-setup` advisor. Companion to
 [artel](https://github.com/dseloustev/artel) (the workflow plugin): the crew works,
-likbez educates it. This repo is both the plugin and its own single-plugin marketplace
+likbez educates it. This repo is both the plugin and its own five-plugin marketplace
 (`.claude-plugin/marketplace.json`), installable straight from GitHub.
 
 Read these before making changes:
@@ -27,13 +29,22 @@ repo), normally at `../adguard-wallet`: `.claude/skills/{flutter-*,dart-*}` and
 When porting, **genericize** — never copy project literals (wallet paths, launch flags,
 `make` targets, project names). The complete known-literal list is in design.md. After
 any skill change, the scrub gate must pass:
-`grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" skills/` → no hits.
+`grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/` → no hits.
+
+## Maintenance
+
+Skill updates flow from upstream repos through the repo-local `upstream-sync`
+dev skill (`.claude/skills/upstream-sync/`), driven by the registry in
+[docs/upstreams.md](docs/upstreams.md). It is repo tooling — never ship it
+under `plugins/`.
 
 ## Conventions
 
-- Plugin layout: `.claude-plugin/plugin.json` (manifest), `skills/<name>/SKILL.md` with
-  `references/`, `assets/`, `scripts/` subtrees preserved. Installed skills surface as
-  `/likbez:<name>`.
+- Plugin layout: root `.claude-plugin/marketplace.json` lists five plugins; each
+  plugin lives at `plugins/<plugin>/` with its own `.claude-plugin/plugin.json`
+  and `skills/<name>/SKILL.md` (`references/`, `assets/`, `scripts/` subtrees
+  preserved). Core skills surface as `/likbez:<name>`, cluster skills as
+  `/likbez-ui:<name>` etc.
 - Skills are **knowledge, not process** — no agents, no hooks, no orchestration, no host
   state, no config. If a skill seems to need any of those, stop and record a decision.
 - Preserve `metadata.author` frontmatter verbatim — 9 skills carry third-party
@@ -42,7 +53,8 @@ any skill change, the scrub gate must pass:
   the `../adguard-wallet` / `../artel` sibling convention only.
 - Commits: conventional commits (`feat:`, `fix:`, `docs:`, `chore:`). Subject line only,
   no trailers.
-- Versioning: semver; keep `CHANGELOG.md` and `.claude-plugin/plugin.json` `version` in
+- Versioning: semver, **lockstep across all five plugins** — keep
+  `CHANGELOG.md` and every `plugins/*/.claude-plugin/plugin.json` `version` in
   sync.
 
 ## Publishing
@@ -55,5 +67,6 @@ here is the corporate one (`d.seloustev@adguard.com`, set in local git config).
 ## Testing a change
 
 Local smoke test: `/plugin marketplace add <path-to-this-repo>` then
-`/plugin install likbez@likbez`; confirm skills appear under the `likbez:` namespace and
-a routed skill (e.g. `/likbez:flutter-drift`) can read its own `references/` files.
+`/plugin install likbez@likbez` (core); run `/likbez:project-setup` in a
+sample project, install a recommended cluster, and confirm a routed skill
+(e.g. `/likbez-data:flutter-drift`) can read its own `references/` files.

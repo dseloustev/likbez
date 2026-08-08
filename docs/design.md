@@ -48,21 +48,24 @@ This repo is both the plugin and its own single-plugin marketplace
 ```
 likbez/
 ├── .claude-plugin/
-│   ├── plugin.json          # manifest: name, version, author, license
-│   └── marketplace.json     # single-plugin marketplace (source: "./")
-├── skills/
-│   └── <name>/
-│       ├── SKILL.md         # entry point with YAML frontmatter
-│       ├── references/      # per-topic deep-dive files (routed skills)
-│       ├── assets/          # starter code the skill tells the reader to copy
-│       └── scripts/         # skill-local helpers (example verifiers)
-├── docs/                    # this design, the porting plan, the source inventory
+│   └── marketplace.json     # five-plugin marketplace (sources: ./plugins/<name>)
+├── plugins/
+│   ├── likbez/              # core: project-setup, ast-index, conventions, architecture
+│   │   ├── .claude-plugin/plugin.json
+│   │   └── skills/<name>/   # SKILL.md + references/ assets/ scripts/
+│   ├── likbez-ui/           # adaptive UI, layout, animations, previews, BDUI, navigation
+│   ├── likbez-data/         # networking, serialization, l10n, Drift
+│   ├── likbez-testing/      # unit/widget/integration tests, mocks, coverage, analysis
+│   └── likbez-tooling/      # runtime, error fixing, idiom, CLI, dependencies
+├── .claude/skills/          # repo-local dev tooling (upstream-sync) — not shipped
+├── docs/                    # design, porting plan, source inventory, upstreams registry
+├── THIRD-PARTY-NOTICES.md
 ├── CLAUDE.md · README.md · LICENSE · CHANGELOG.md
 ```
 
-Skills keep their source names — `flutter-architecture`, `dart-drift`, … — and surface as
-`/likbez:flutter-architecture` etc. once installed. No renames are needed: the `flutter-*`
-/ `dart-*` prefixes are the catalog's organizing principle, not project residue.
+Skills keep their source names and surface namespaced by their plugin:
+`/likbez:ast-index`, `/likbez-ui:flutter-navigation`, `/likbez-data:dart-drift`,
+… The five plugins version in lockstep (one version, one CHANGELOG).
 
 ### Skill anatomy
 
@@ -84,7 +87,7 @@ unchanged.
 
 The source system's `rules/ast-index.md` — the policy making `ast-index` the mandatory
 first tool for code search, with a verbatim block to paste into subagent prompts — ports
-as a 32nd skill, `skills/ast-index/SKILL.md`. Rationale:
+as a core skill, `plugins/likbez/skills/ast-index/SKILL.md`. Rationale:
 
 - Skills are a plugin's delivery mechanism; a loose doc in the plugin directory is not
   discoverable or loadable by a host session.
@@ -124,12 +127,12 @@ skill additionally drops its `make g` / `make codegen` references (see above).
 Mechanical acceptance check, run after every phase and again before publish:
 
 ```bash
-grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" skills/ && echo "FAIL" || echo "CLEAN"
+grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ && echo "FAIL" || echo "CLEAN"
 ```
 
 Must print `CLEAN`. Also: no absolute paths anywhere in the skill tree
-(`grep -rn "/Users/" skills/` must be empty; docs follow the same rule by convention —
-the gate is scoped to `skills/` so its own text doesn't trip it).
+(`grep -rn "/Users/" plugins/` must be empty; docs follow the same rule by convention —
+the gate is scoped to `plugins/` so its own text doesn't trip it).
 
 ## Attribution and licensing
 
@@ -171,8 +174,8 @@ alongside artel:
 - No absolute paths anywhere; source references use the sibling convention
   (`../adguard-wallet`, `../artel`).
 - Commits: conventional commits (`feat:`, `fix:`, `docs:`, `chore:`), subject line only.
-- Versioning: semver; `CHANGELOG.md` and `.claude-plugin/plugin.json` `version` stay in
-  sync. First published tag: `v0.1.0`.
+- Versioning: semver; keep `CHANGELOG.md` and all five `plugins/*/.claude-plugin/plugin.json`
+  versions in lockstep. First published tag: `v0.1.0`.
 - Skills are knowledge, not process: a likbez skill never invokes agents, never writes
   host state, never orchestrates. If a ported skill turns out to contain process, that is
   a porting error — flag it against the inventory.
@@ -184,9 +187,10 @@ licensing question resolves**). `gh` operations need the corporate profile:
 `GH_CONFIG_DIR=~/.config/gh-adguard gh …`. Git identity for commits: corporate
 (`d.seloustev@adguard.com`, set in local git config).
 
-Local smoke test: `/plugin marketplace add <path-to-this-repo>` →
-`/plugin install likbez@likbez` → confirm skills appear under the `likbez:` namespace and
-a routed skill (e.g. `/likbez:flutter-drift`) can read its own `references/` files.
+Local smoke test: `/plugin marketplace add <path-to-this-repo>` then
+`/plugin install likbez@likbez` (core); run `/likbez:project-setup` in a
+sample project, install a recommended cluster, and confirm a routed skill
+(e.g. `/likbez-data:flutter-drift`) can read its own `references/` files.
 
 ## Open questions
 
