@@ -241,7 +241,7 @@ design.md's known-literal table).
 ## Phase 2 — UI, layout, navigation (→ plugins/likbez-ui/skills/)
 
 - [x] Port `flutter-adaptive-ui` (6 refs, 2 assets; MADTeacher).
-- [ ] Port `flutter-build-responsive-layout` (single-file).
+- [x] Port `flutter-build-responsive-layout` (single-file).
 - [ ] Port `flutter-fix-layout-issues` (single-file).
 - [ ] Port `flutter-animations` (6 refs, 4 assets; MADTeacher).
 - [ ] Port `flutter-add-widget-preview` (single-file).
