@@ -301,17 +301,19 @@ Designed in docs/superpowers/specs/2026-08-07-cluster-split-advisor-upstream-syn
 
 ## Phase 6 — publish
 
-- [ ] Run the scrub gate over the full tree (design.md) — `CLEAN` required. Also
-      `grep -rn "/Users/" plugins/` → empty.
+- [x] Run the scrub gate over the full tree (design.md) — `CLEAN` required. Also
+      `grep -rn "/Users/" plugins/` → empty. (2026-08-08: both pass.)
 - [ ] Local marketplace smoke test: `/plugin marketplace add <path>` +
       `/plugin install likbez@likbez`; run `/likbez:project-setup` on a sample
       Flutter project (sane recommendations); install one recommended cluster;
       spot-check one routed skill (`/likbez-data:flutter-drift` reads its
       `references/`), one single-file skill, and `/likbez:ast-index`.
 - [x] Fill README's skill catalog: one table per plugin.
-- [ ] Verify `THIRD-PARTY-NOTICES.md` matches the upstream LICENSE files
+- [x] Verify `THIRD-PARTY-NOTICES.md` matches the upstream LICENSE files
       (licensing resolved 2026-08-07 — see design.md decision log). Repo may go
-      public once verified.
+      public once verified. (2026-08-08: all three license texts diff-verified
+      verbatim against the baseline-reconciliation clones; go-public timing
+      remains the operator's call.)
 - [ ] Create `dseloustev/likbez` (private) with the corporate profile
       (`GH_CONFIG_DIR=~/.config/gh-adguard gh repo create …`), push, verify the install
       path from GitHub.
