@@ -243,7 +243,7 @@ design.md's known-literal table).
 - [x] Port `flutter-adaptive-ui` (6 refs, 2 assets; MADTeacher).
 - [x] Port `flutter-build-responsive-layout` (single-file).
 - [x] Port `flutter-fix-layout-issues` (single-file).
-- [ ] Port `flutter-animations` (6 refs, 4 assets; MADTeacher).
+- [x] Port `flutter-animations` (6 refs, 4 assets; MADTeacher).
 - [ ] Port `flutter-add-widget-preview` (single-file).
 - [ ] Port `flutter-duit-bdui` (4 refs).
 - [ ] Port `flutter-navigation` (4 refs, 4 assets; MADTeacher).
