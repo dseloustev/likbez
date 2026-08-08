@@ -14,7 +14,7 @@
 
 - Commits: conventional commits, **subject line only, no trailers, no Co-Authored-By**.
 - All content in English; **no absolute paths** anywhere in repo files (`../adguard-wallet` sibling convention only).
-- Scrub gate after any change under `plugins/`: `grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/` → no output, and `grep -rn "/Users/" plugins/` → no output.
+- Scrub gate after any change under `plugins/`: `grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ --exclude=plugin.json` → no output, and `grep -rn "/Users/" plugins/` → no output.
 - Lockstep version: all five `plugins/*/.claude-plugin/plugin.json` carry `"version": "0.1.0"` and must stay identical forever.
 - Author block everywhere: `{"name": "Dmitry Seloustev", "email": "d.seloustev@adguard.com"}`; license `MIT`; homepage/repository `https://github.com/dseloustev/likbez`.
 - Git identity is already configured locally; do not change git config.
@@ -530,7 +530,7 @@ mode 1's printed commands are the deliverable.
 Run: `head -3 plugins/likbez/skills/project-setup/SKILL.md`
 Expected: `---`, `name: project-setup`, `description: >-`.
 
-Run: `grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ ; grep -rn "/Users/" plugins/`
+Run: `grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ --exclude=plugin.json ; grep -rn "/Users/" plugins/`
 Expected: no output from either grep.
 
 - [ ] **Step 3: Tick the Phase 5.5 box and update the changelog**
@@ -741,8 +741,8 @@ Per approved skill, in its own commit:
 3. Gates — all must pass, or the merge does not land (revert the skill and
    report):
 
-       grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/   # no output
-       grep -rn "/Users/" plugins/                                          # no output
+       grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ --exclude=plugin.json   # no output
+       grep -rn "/Users/" plugins/                                                                # no output
 
    and every relative link inside the skill resolves.
 4. Commit: `feat: sync <skill> with upstream` (subject only).

@@ -29,7 +29,7 @@ repo), normally at `../adguard-wallet`: `.claude/skills/{flutter-*,dart-*}` and
 When porting, **genericize** — never copy project literals (wallet paths, launch flags,
 `make` targets, project names). The complete known-literal list is in design.md. After
 any skill change, the scrub gate must pass:
-`grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/` → no hits.
+`grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ --exclude=plugin.json` → no hits.
 
 ## Maintenance
 

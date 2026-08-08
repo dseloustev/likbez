@@ -83,7 +83,7 @@ Rules:
 - Install UX: `/plugin marketplace add dseloustev/likbez` → `/plugin install
   likbez@likbez` (core) → `/likbez:project-setup` recommends the rest.
 - The scrub gate becomes `grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard"
-  plugins/` (and `grep -rn "/Users/" plugins/` empty). CLAUDE.md, README, and
+  plugins/ --exclude=plugin.json` (and `grep -rn "/Users/" plugins/` empty). CLAUDE.md, README, and
   design.md's architecture section are updated to the new layout and gate.
 - Clusters align with porting phases: 1→core, 2→ui, 3→data, 4→testing, 5→tooling
   (`ast-index` lands in core during Phase 5).

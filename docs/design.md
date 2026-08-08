@@ -127,12 +127,13 @@ skill additionally drops its `make g` / `make codegen` references (see above).
 Mechanical acceptance check, run after every phase and again before publish:
 
 ```bash
-grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ && echo "FAIL" || echo "CLEAN"
+grep -rniE "wallet|AW-[0-9]|aiguard|adguard|mcp__aiguard" plugins/ --exclude=plugin.json && echo "FAIL" || echo "CLEAN"
 ```
 
 Must print `CLEAN`. Also: no absolute paths anywhere in the skill tree
 (`grep -rn "/Users/" plugins/` must be empty; docs follow the same rule by convention —
-the gate is scoped to `plugins/` so its own text doesn't trip it).
+the gate is scoped to `plugins/` so its own text doesn't trip it, and excludes
+`plugin.json` manifests, whose author email legitimately contains the corporate domain).
 
 ## Attribution and licensing
 
@@ -256,3 +257,8 @@ sample project, install a recommended cluster, and confirm a routed skill
   notices plus per-skill provenance via the registry; verify `flutter-duit-bdui`
   against MADTeacher's copy during its port and add attribution if derived. Open
   question 1 is closed; the repo may go public at Phase 6.
+- **2026-08-08 — Scrub gate excludes plugin manifests (user-approved).** The gate
+  command gains `--exclude=plugin.json`: the five manifests' `author.email`
+  (`d.seloustev@adguard.com`) legitimately matches the `adguard` pattern and is
+  the corporate identity, not a source-project literal. Skill content remains
+  fully gated.
