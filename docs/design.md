@@ -15,7 +15,7 @@ The name pairing is era-matched: an *artel* is a workers' cooperative; *likbez*
 (ликвидация безграмотности, "liquidation of illiteracy") was the literacy campaign that
 educated it. **The crew works; likbez educates it.**
 
-This repo is both the plugin and its own single-plugin marketplace
+This repo is both the plugin and its own five-plugin marketplace
 (`.claude-plugin/marketplace.json`), installable straight from GitHub — exactly like artel.
 
 ## Goals
@@ -33,7 +33,8 @@ This repo is both the plugin and its own single-plugin marketplace
 
 - **No process.** Likbez contains no agents, no hooks, no orchestrator skills, no quality
   gates, no host-writable state, no config file. Every skill is self-contained knowledge:
-  an agent (or human) loads it, reads it, applies it. If a future need for configuration
+  an agent (or human) loads it, reads it, applies it. The single recorded exception is the
+  `project-setup` advisor (see decision log). If a future need for configuration
   arises, that is a new design decision — v1 explicitly has none.
 - **No artel coupling.** Likbez installs and works standalone. Artel never becomes a
   dependency, and likbez never references artel's config, run state, or pipeline.
@@ -178,13 +179,16 @@ alongside artel:
 - Versioning: semver; keep `CHANGELOG.md` and all five `plugins/*/.claude-plugin/plugin.json`
   versions in lockstep. First published tag: `v0.1.0`.
 - Skills are knowledge, not process: a likbez skill never invokes agents, never writes
-  host state, never orchestrates. If a ported skill turns out to contain process, that is
-  a porting error — flag it against the inventory.
+  host state, never orchestrates. The one exception, recorded in the decision log, is
+  `project-setup`, which may write host config with explicit user consent. If a ported
+  skill turns out to contain process, that is a porting error — flag it against the
+  inventory.
 
 ## Versioning and publishing
 
 Repo home: `https://github.com/dseloustev/likbez` (corporate account, **private until the
-licensing question resolves**). `gh` operations need the corporate profile:
+Phase 6 notices verification and go-public call (licensing itself is resolved — see
+design.md decision log)**). `gh` operations need the corporate profile:
 `GH_CONFIG_DIR=~/.config/gh-adguard gh …`. Git identity for commits: corporate
 (`d.seloustev@adguard.com`, set in local git config).
 

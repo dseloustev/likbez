@@ -46,7 +46,8 @@ under `plugins/`.
   preserved). Core skills surface as `/likbez:<name>`, cluster skills as
   `/likbez-ui:<name>` etc.
 - Skills are **knowledge, not process** — no agents, no hooks, no orchestration, no host
-  state, no config. If a skill seems to need any of those, stop and record a decision.
+  state, no config (single recorded exception: `project-setup` — see design.md decision
+  log). If a skill seems to need any of those, stop and record a decision.
 - Preserve `metadata.author` frontmatter verbatim — 9 skills carry third-party
   attribution (see design.md, "Attribution and licensing").
 - All docs and commit messages in English. No absolute paths — repo-relative paths or
@@ -60,8 +61,9 @@ under `plugins/`.
 ## Publishing
 
 Repo home: `https://github.com/dseloustev/likbez` (corporate account, **private until
-the third-party licensing question in design.md is resolved**). `gh` operations need the
-corporate profile: `GH_CONFIG_DIR=~/.config/gh-adguard gh …`. Git identity for commits
+the Phase 6 notices verification and go-public call (licensing itself is resolved — see
+design.md decision log)**). `gh` operations need the corporate profile:
+`GH_CONFIG_DIR=~/.config/gh-adguard gh …`. Git identity for commits
 here is the corporate one (`d.seloustev@adguard.com`, set in local git config).
 
 ## Testing a change

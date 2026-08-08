@@ -41,7 +41,8 @@ coherent, committable state; keep the checkboxes current as work lands.
 ## Phase 0 — skeleton
 
 Repo scaffold, plugin manifest, marketplace file. Exact contents below — create verbatim,
-then commit (`chore: repo skeleton and plugin manifest`).
+then commit (`chore: repo skeleton and plugin manifest`). (Historical: these verbatim
+blocks show the original single-plugin scaffold, superseded by Phase 0.5.)
 
 - [x] `.claude-plugin/plugin.json`
 - [x] `.claude-plugin/marketplace.json`

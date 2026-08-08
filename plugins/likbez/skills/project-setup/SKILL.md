@@ -58,7 +58,7 @@ full menu.
 ## Step 3 — ask about planned technology
 
 Ask one question: which of these does the user plan to add — a database, deep
-links or web URLs, backend-driven UI, localization, HTTP APIs, CLI tooling,
+links or web URLs, backend-driven UI, localization, HTTP APIs, runtime debugging, CLI tooling,
 or none? Map the answers through the same signal table and extend the
 recommendation, marking those rows "planned" rather than "detected".
 
