@@ -246,7 +246,7 @@ design.md's known-literal table).
 - [x] Port `flutter-animations` (6 refs, 4 assets; MADTeacher).
 - [x] Port `flutter-add-widget-preview` (single-file).
 - [x] Port `flutter-duit-bdui` (4 refs).
-- [ ] Port `flutter-navigation` (4 refs, 4 assets; MADTeacher).
+- [x] Port `flutter-navigation` (4 refs, 4 assets; MADTeacher).
 - [ ] Port `flutter-setup-declarative-routing` (single-file).
 
 ## Phase 3 — data: networking, serialization, localization, persistence (→ plugins/likbez-data/skills/)
