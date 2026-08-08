@@ -232,9 +232,11 @@ design.md's known-literal table).
 
 - [x] Port `flutter-architecture` (5 refs, 3 assets; author: MADTeacher — preserve).
 - [x] Port `flutter-apply-architecture-best-practices` (single-file).
-- [ ] Port + genericize `flutter-conventions` (SKILL.md + checklist.md): retitle
+- [x] Port + genericize `flutter-conventions` (SKILL.md + checklist.md): retitle
       "Flutter convention checklist"; generalize the key-material / locker-path /
-      `mainAccount` items to stack-neutral security guidance.
+      `mainAccount` items to stack-neutral security guidance. (Also scrubbed literals
+      the known-literal scan missed — `aw_api.json`, `make` targets, `verify`-gate
+      references; recorded in design.md's known-literal table.)
 
 ## Phase 2 — UI, layout, navigation (→ plugins/likbez-ui/skills/)
 

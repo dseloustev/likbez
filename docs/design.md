@@ -119,6 +119,14 @@ A full scan of the 31 skills for `wallet|AW-[0-9]|aiguard|adguard` found **5 hit
 | `flutter-conventions/SKILL.md` (L4) | "Wallet convention checklist…" | "Flutter convention checklist…" |
 | `flutter-runtime/SKILL.md` (L33) | "AdGuard Wallet requires `--dart-define-from-file=./config/dev.env`, so the user must launch from VS Code." | Conditionalize: "Projects launched with `--dart-define-from-file` (or other custom flags) can't use direct `launch_app` — use the VS Code DTD workflow instead." |
 
+Found during Phase 1 porting (outside the grep pattern, same rule — make targets and
+project names genericize):
+
+| File | Hit | Fix |
+|---|---|---|
+| `flutter-conventions/checklist.md` (generated-files item) | `aw_api.json`; `make g` / `make ln` / `make vec` / `make codegen-api`; wallet-specific generated-tree paths | Generalize: "the source (annotated model, ARB file, SVG, API spec) followed by your project's codegen command" |
+| `flutter-conventions/{SKILL.md,checklist.md}` | "the `verify` gate" (source-system gate name); sources-of-truth list naming wallet repo docs | Generalize: "the analyzer/DCM gate"; "the host project's `CLAUDE.md` and convention/code-style docs" |
+
 `flutter-conventions` is the only skill needing real editorial rework (its checklist *is*
 the wallet's); everything else is a copy with at most a one-line touch-up. The ast-index
 skill additionally drops its `make g` / `make codegen` references (see above).
