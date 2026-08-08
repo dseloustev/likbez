@@ -80,6 +80,14 @@ Core skills surface as `/likbez:<name>`, cluster skills as
 | `dart-build-cli-app` | CLI construction: ArgParser vs CommandRunner, POSIX exit codes, distribution |
 | `dart-resolve-package-conflicts` | Dependency management and conflict-resolution workflows |
 
+## Development
+
+Maintainer docs live in [docs/](docs/): [design](docs/design.md) (architecture
+and decision log), [porting plan](docs/porting-plan.md),
+[source inventory](docs/source-inventory.md),
+[upstream registry](docs/upstreams.md), and the
+[local smoke test](docs/smoke-test.md) run before each release.
+
 ## License
 
 MIT for likbez itself. Ported skills originate from third-party repositories

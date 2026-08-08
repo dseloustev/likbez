@@ -204,6 +204,7 @@ Local smoke test: `/plugin marketplace add <path-to-this-repo>` then
 `/plugin install likbez@likbez` (core); run `/likbez:project-setup` in a
 sample project, install a recommended cluster, and confirm a routed skill
 (e.g. `/likbez-data:flutter-drift`) can read its own `references/` files.
+Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
 
 ## Open questions
 
