@@ -22,9 +22,63 @@ Core skills surface as `/likbez:<name>`, cluster skills as
 
 ## What's inside
 
-<!-- Generate this catalog from docs/source-inventory.md cluster headings once skills
-     land: one table per plugin (likbez core, likbez-ui, likbez-data, likbez-testing, likbez-tooling),
-     columns: skill, one-line purpose. -->
+### likbez (core)
+
+| Skill | Purpose |
+|---|---|
+| `project-setup` | Analyzes the host project and recommends/enables the matching likbez clusters |
+| `flutter-architecture` | MVVM, layered UI/Data/optional Domain boundaries, feature-first structure, Result & Command patterns |
+| `flutter-apply-architecture-best-practices` | The official layered-approach primer for structuring or refactoring a project |
+| `flutter-conventions` | Convention checklist for the subset DCM/analyzer do not enforce |
+| `ast-index` | Mandatory-first code-search policy for projects with the `ast-index` CLI, including the subagent prompt block |
+
+### likbez-ui
+
+| Skill | Purpose |
+|---|---|
+| `flutter-adaptive-ui` | Constraint-based adaptive design: breakpoints, `MediaQuery` vs `LayoutBuilder`, state preservation across resize/fold |
+| `flutter-build-responsive-layout` | Layout techniques: constraints-down/sizes-up, `Expanded`/`Flexible`, lazy `.builder` lists |
+| `flutter-fix-layout-issues` | Diagnostic map from layout error signatures to conditional fixes |
+| `flutter-animations` | Picking the smallest sufficient animation model with controller lifecycle discipline |
+| `flutter-add-widget-preview` | Adding `@Preview` widget previews |
+| `flutter-duit-bdui` | Backend-driven UI with `flutter_duit` |
+| `flutter-navigation` | Choosing the smallest routing model (`Navigator` vs `go_router`), route data, URL/tab/back behavior |
+| `flutter-setup-declarative-routing` | Bootstrap for `MaterialApp.router` + `go_router` |
+
+### likbez-data
+
+| Skill | Purpose |
+|---|---|
+| `flutter-networking` | Networking contract: client stacks, typed decoders, explicit timeouts, services own endpoints |
+| `flutter-use-http-package` | Narrow how-to for the `http` package |
+| `flutter-implement-json-serialization` | Manual `fromJson`/`toJson` with `dart:convert`, `compute()` offloading |
+| `flutter-internationalization` | The l10n decision guide: gen-l10n, ARB management, plural/select, RTL |
+| `flutter-setup-localization` | Initial l10n bootstrap checklist |
+| `flutter-drift` | Routed Drift-in-Flutter reference |
+| `dart-drift` | Drift for CLI/server/desktop Dart (SQLite or PostgreSQL) |
+
+### likbez-testing
+
+| Skill | Purpose |
+|---|---|
+| `flutter-testing` | Umbrella testing reference: choosing the correct layer, goldens, flakiness, CI |
+| `flutter-add-widget-test` | `WidgetTester`/`Finder`/`Matcher` walkthrough |
+| `flutter-add-integration-test` | Setting up `integration_test` and converting live-app exploration into tests |
+| `dart-add-unit-test` | Unit-test structure and conventions |
+| `dart-generate-test-mocks` | Mockito + build_runner mocks |
+| `dart-collect-coverage` | Coverage collection and LCOV reports |
+| `dart-migrate-to-checks-package` | Migrating `expect()` assertions to `package:checks` |
+| `dart-run-static-analysis` | `analysis_options.yaml`, suppressions, `dart analyze` / `dart fix` workflows |
+
+### likbez-tooling
+
+| Skill | Purpose |
+|---|---|
+| `flutter-runtime` | The Dart MCP runtime tools and connection workflows; hot reload, widget tree inspection, log reading |
+| `dart-fix-runtime-errors` | Type-soundness/null-safety knowledge plus the locate-fix-verify loop |
+| `dart-use-pattern-matching` | Dart 3 pattern-matching idiom |
+| `dart-build-cli-app` | CLI construction: ArgParser vs CommandRunner, POSIX exit codes, distribution |
+| `dart-resolve-package-conflicts` | Dependency management and conflict-resolution workflows |
 
 ## License
 
