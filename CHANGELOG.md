@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. The format 
 - `project-setup` advisor skill (core): recommends and enables likbez
   clusters per project.
 - `docs/upstreams.md`: per-skill upstream registry (sync state + provenance).
+- `upstream-sync` repo-local dev skill for folding upstream skill changes in.
 
 ### Changed
 

@@ -287,7 +287,7 @@ Designed in docs/superpowers/specs/2026-08-07-cluster-split-advisor-upstream-syn
 
 - [x] `project-setup` advisor skill in `plugins/likbez/skills/project-setup/`.
 - [x] `docs/upstreams.md` registry (per-skill upstream, path, last-synced SHA, notes).
-- [ ] `upstream-sync` dev skill in `.claude/skills/upstream-sync/` (repo-local, not shipped).
+- [x] `upstream-sync` dev skill in `.claude/skills/upstream-sync/` (repo-local, not shipped).
 - [ ] `THIRD-PARTY-NOTICES.md` with the MIT and BSD-3 notices, verbatim from upstream LICENSE files.
 - [ ] Baseline reconciliation: first `upstream-sync` run after Phases 1–5 —
       content-diff every skill against upstream HEAD, record starting SHAs in
