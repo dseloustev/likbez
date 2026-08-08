@@ -257,7 +257,7 @@ design.md's known-literal table).
 - [x] Port `flutter-internationalization` (3 refs, 2 assets; MADTeacher).
 - [x] Port `flutter-setup-localization` (single-file).
 - [x] Port `flutter-drift` (7 refs; MADTeacher).
-- [ ] Port `dart-drift` (7 refs, 1 script; MADTeacher).
+- [x] Port `dart-drift` (7 refs, 1 script; MADTeacher).
 
 ## Phase 4 — testing & quality (→ plugins/likbez-testing/skills/)
 
