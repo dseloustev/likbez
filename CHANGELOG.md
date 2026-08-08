@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Added
+
+- `project-setup` advisor skill (core): recommends and enables likbez
+  clusters per project.
+
 ### Changed
 
 - Restructured into a five-plugin marketplace (`likbez`, `likbez-ui`,

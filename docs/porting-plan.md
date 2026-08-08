@@ -285,7 +285,7 @@ design.md's known-literal table).
 
 Designed in docs/superpowers/specs/2026-08-07-cluster-split-advisor-upstream-sync-design.md.
 
-- [ ] `project-setup` advisor skill in `plugins/likbez/skills/project-setup/`.
+- [x] `project-setup` advisor skill in `plugins/likbez/skills/project-setup/`.
 - [ ] `docs/upstreams.md` registry (per-skill upstream, path, last-synced SHA, notes).
 - [ ] `upstream-sync` dev skill in `.claude/skills/upstream-sync/` (repo-local, not shipped).
 - [ ] `THIRD-PARTY-NOTICES.md` with the MIT and BSD-3 notices, verbatim from upstream LICENSE files.
