@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file. The format 
   clusters per project.
 - `docs/upstreams.md`: per-skill upstream registry (sync state + provenance).
 - `upstream-sync` repo-local dev skill for folding upstream skill changes in.
+- `bump-version` repo-local dev skill for cutting releases: lockstep manifest
+  bump, dated CHANGELOG section, `chore(release)` commit and annotated tag.
 - `THIRD-PARTY-NOTICES.md` with the upstream MIT and BSD-3 license texts.
 
 ### Changed

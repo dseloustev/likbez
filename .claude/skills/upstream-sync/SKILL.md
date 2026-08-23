@@ -76,8 +76,9 @@ Per approved skill, in its own commit:
    unchanged ones ("checked at" is the meaning) — to the clone's
    `git rev-parse HEAD` (AW rows: the wallet SHA from step 1).
 2. Add a CHANGELOG entry under Unreleased naming the synced skills.
-3. If any shipped skill changed, bump the lockstep version in all five
-   `plugins/*/.claude-plugin/plugin.json` files — they must stay identical.
+3. Do not touch the `version` fields in `plugins/*/.claude-plugin/plugin.json`
+   — the lockstep bump happens at release time via the `bump-version` dev
+   skill, which reads the CHANGELOG entry from step 2 to size it.
 4. Commit: `chore: record upstream sync`.
 
 ## Rules

@@ -58,7 +58,7 @@ likbez/
 │   ├── likbez-data/         # networking, serialization, l10n, Drift
 │   ├── likbez-testing/      # unit/widget/integration tests, mocks, coverage, analysis
 │   └── likbez-tooling/      # runtime, error fixing, idiom, CLI, dependencies
-├── .claude/skills/          # repo-local dev tooling (upstream-sync) — not shipped
+├── .claude/skills/          # repo-local dev tooling (upstream-sync, bump-version) — not shipped
 ├── docs/                    # design, porting plan, source inventory, upstreams registry
 ├── THIRD-PARTY-NOTICES.md
 ├── CLAUDE.md · README.md · LICENSE · CHANGELOG.md
@@ -185,7 +185,8 @@ alongside artel:
   (`../adguard-wallet`, `../artel`).
 - Commits: conventional commits (`feat:`, `fix:`, `docs:`, `chore:`), subject line only.
 - Versioning: semver; keep `CHANGELOG.md` and all five `plugins/*/.claude-plugin/plugin.json`
-  versions in lockstep. First published tag: `v0.1.0`.
+  versions in lockstep. Releases are cut with the `bump-version` dev skill
+  (`.claude/skills/bump-version/`). First published tag: `v0.1.0`.
 - Skills are knowledge, not process: a likbez skill never invokes agents, never writes
   host state, never orchestrates. The one exception, recorded in the decision log, is
   `project-setup`, which may write host config with explicit user consent. If a ported
@@ -275,3 +276,13 @@ Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
   (`d.seloustev@adguard.com`) legitimately matches the `adguard` pattern and is
   the corporate identity, not a source-project literal. Skill content remains
   fully gated.
+- **2026-08-23 — `bump-version` dev skill owns the release chore (user-approved).**
+  Ported from artel's repo-local `bump-version` and adapted to likbez's six version
+  carriers (`CHANGELOG.md` + five manifests): preflight adds a lockstep-drift check and
+  uses the scrub gate in place of a test suite (likbez has none). A "finalize" rule
+  covers the case where the manifests already name an untagged version — the first
+  release, or a version pre-set in a sync commit — so the skill cuts that version as-is
+  instead of demanding a strictly greater one. The skill stops at the annotated tag;
+  push and GitHub release stay manual. `upstream-sync` no longer bumps manifests — the
+  bump is sized from `[Unreleased]` at release time. Lives in
+  `.claude/skills/bump-version/`, never shipped.

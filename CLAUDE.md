@@ -35,8 +35,11 @@ any skill change, the scrub gate must pass:
 
 Skill updates flow from upstream repos through the repo-local `upstream-sync`
 dev skill (`.claude/skills/upstream-sync/`), driven by the registry in
-[docs/upstreams.md](docs/upstreams.md). It is repo tooling — never ship it
-under `plugins/`.
+[docs/upstreams.md](docs/upstreams.md). Releases are cut with the repo-local
+`bump-version` dev skill (`.claude/skills/bump-version/`): it sizes the semver
+bump from `[Unreleased]`, writes the five manifests and the CHANGELOG in
+lockstep, commits, and tags — never pushes. Both are repo tooling — never ship
+them under `plugins/`.
 
 ## Conventions
 

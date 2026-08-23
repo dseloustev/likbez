@@ -319,7 +319,8 @@ Designed in docs/superpowers/specs/2026-08-07-cluster-split-advisor-upstream-syn
       (`GH_CONFIG_DIR=~/.config/gh-adguard gh repo create …`), push, verify the install
       path from GitHub.
 - [ ] Update CHANGELOG (`0.1.0` entry), confirm plugin.json version matches, tag
-      `v0.1.0`.
+      `v0.1.0` — run the `bump-version` dev skill (finalize mode: manifests already
+      say `0.1.0`).
 
 ## Source → plugin map
 
