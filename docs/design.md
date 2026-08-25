@@ -5,7 +5,7 @@
 ## What this is
 
 **Likbez** is a Claude Code plugin: a pure-knowledge pack of Flutter/Dart reference and
-how-to skills, plus the `ast-index` search policy. It is the companion to
+how-to skills. It is the companion to
 **[artel](https://github.com/dseloustev/artel)** — the spec-driven autonomous
 feature-development workflow plugin. The two were split out of the same source system
 (a private Flutter wallet project): artel took the workflow (orchestrators, agents, hooks,
@@ -22,9 +22,8 @@ This repo is both the plugin and its own five-plugin marketplace
 
 1. **One-command install** — `/plugin marketplace add dseloustev/likbez` →
    `/plugin install likbez@likbez`, usable in any Flutter/Dart project.
-2. **Complete v1 knowledge set** — all 31 informational skills from the source system plus
-   the `ast-index` policy, ported with their full `references/`, `assets/`, and `scripts/`
-   subtrees intact.
+2. **Complete v1 knowledge set** — all 31 informational skills from the source system,
+   ported with their full `references/`, `assets/`, and `scripts/` subtrees intact.
 3. **Generic Flutter/Dart, not wallet-flavored** — the knowledge reads as a general
    Flutter/Dart pack. Source-project literals (wallet paths, project launch flags, `make`
    targets) are genericized, never copied.
@@ -51,7 +50,7 @@ likbez/
 ├── .claude-plugin/
 │   └── marketplace.json     # five-plugin marketplace (sources: ./plugins/<name>)
 ├── plugins/
-│   ├── likbez/              # core: project-setup, ast-index, conventions, architecture
+│   ├── likbez/              # core: project-setup, conventions, architecture
 │   │   ├── .claude-plugin/plugin.json
 │   │   └── skills/<name>/   # SKILL.md + references/ assets/ scripts/
 │   ├── likbez-ui/           # adaptive UI, layout, animations, previews, BDUI, navigation
@@ -65,7 +64,7 @@ likbez/
 ```
 
 Skills keep their source names and surface namespaced by their plugin:
-`/likbez:ast-index`, `/likbez-ui:flutter-navigation`, `/likbez-data:dart-drift`,
+`/likbez:flutter-architecture`, `/likbez-ui:flutter-navigation`, `/likbez-data:dart-drift`,
 … The five plugins version in lockstep (one version, one CHANGELOG).
 
 ### Skill anatomy
@@ -84,20 +83,26 @@ Three skills ship a `scripts/verify-examples.sh` (`flutter-networking`, `flutter
 `dart-drift`) — skill-local helpers that validate the skill's own code examples. They port
 unchanged.
 
-### The ast-index skill
+### Why likbez ships no search policy
 
-The source system's `rules/ast-index.md` — the policy making `ast-index` the mandatory
-first tool for code search, with a verbatim block to paste into subagent prompts — ports
-as a core skill, `plugins/likbez/skills/ast-index/SKILL.md`. Rationale:
+Likbez deliberately carries **no** code-search rules. The `ast-index` skill it shipped in
+v0.1.0 — a port of the source system's `rules/ast-index.md` — was retired in 0.2.0 (see
+the decision log, 2026-08-25). Three reasons, none of them visible to the founding design:
 
-- Skills are a plugin's delivery mechanism; a loose doc in the plugin directory is not
-  discoverable or loadable by a host session.
-- Plugin namespacing (`/likbez:ast-index`) avoids collision with any standalone ast-index
-  tooling the host may have installed.
-- Agents that don't inherit skills can still `Read` it by path (see "Relationship to
-  artel" below).
+- **A standalone `ast-index` plugin owns the job.** It ships the full command reference
+  for the current CLI and enforces the policy with hooks rather than prose, versioned in
+  step with the tool.
+- **The founding rationale was wrong about collision.** Plugin namespacing does *not*
+  avoid it: both skills declare `name: ast-index`, so two competing descriptions load
+  whenever both plugins are installed.
+- **It was process, not knowledge.** Tool-choice policy for a third-party CLI that likbez
+  cannot guarantee is installed, inside a pack whose charter is craft knowledge. Removing
+  it restores the "No process" non-goal to a single recorded exception, `project-setup`.
 
-Its `make g` / `make codegen` literals genericize to "your project's codegen command".
+The one Flutter/Dart fact worth keeping — codegen emits symbols a search index cannot see
+until it is refreshed — moved to `flutter-conventions`' generated-files item, where it
+belongs as a convention consequence. `project-setup` mentions the standalone plugin as
+optional companion tooling. Nothing in likbez depends on it.
 
 ## Genericization
 
@@ -128,8 +133,7 @@ project names genericize):
 | `flutter-conventions/{SKILL.md,checklist.md}` | "the `verify` gate" (source-system gate name); sources-of-truth list naming wallet repo docs | Generalize: "the analyzer/DCM gate"; "the host project's `CLAUDE.md` and convention/code-style docs" |
 
 `flutter-conventions` is the only skill needing real editorial rework (its checklist *is*
-the wallet's); everything else is a copy with at most a one-line touch-up. The ast-index
-skill additionally drops its `make g` / `make codegen` references (see above).
+the wallet's); everything else is a copy with at most a one-line touch-up.
 
 ### Scrub gate
 
@@ -174,8 +178,8 @@ alongside artel:
   likbez needs to know about this.
 - The contracts and operator docs from the source system (`autonomous-run.md`,
   `orchestrator-common.md`, ticket-parsing, deviation-protocol, …) ship with **artel** —
-  they document the workflow, not the craft. The single exception, `rules/ast-index.md`,
-  ships here as the `ast-index` skill.
+  they document the workflow, not the craft. `rules/ast-index.md` was the single
+  exception, ported here as a skill and retired in 0.2.0 (see the decision log).
 
 ## Conventions
 
@@ -286,3 +290,16 @@ Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
   push and GitHub release stay manual. `upstream-sync` no longer bumps manifests — the
   bump is sized from `[Unreleased]` at release time. Lives in
   `.claude/skills/bump-version/`, never shipped.
+- **2026-08-25 — `ast-index` skill retired (user-approved).** Supersedes the 2026-08-07
+  v1-scope decision for this one skill: `plugins/likbez/skills/ast-index/` is deleted, and
+  the pack drops to 32 skills. A standalone `ast-index` plugin (CLI v3.50) ships the same
+  policy with a current command reference and enforcement hooks, and both skills declared
+  `name: ast-index` — the founding claim that plugin namespacing avoids collision does not
+  hold. The skill was also the pack's only piece of pure tool policy, for a CLI likbez
+  cannot assume is installed. Two lines survive, relocated by kind: the codegen-staleness
+  fact (verified absent from the upstream plugin, which carries no codegen coverage at
+  all) joins `flutter-conventions`' generated-files item, phrased tool-agnostically; and
+  `project-setup` gains an optional-companion pointer. The remaining 32 skills are
+  deliberately **not** wired to ast-index — that would push a third-party dependency into
+  32 files of otherwise portable knowledge. Design:
+  [superpowers/specs/2026-08-25-retire-ast-index-skill-design.md](superpowers/specs/2026-08-25-retire-ast-index-skill-design.md).
