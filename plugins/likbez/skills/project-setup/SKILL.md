@@ -39,8 +39,8 @@ Collect signals. Missing files are signals too — never fail on them.
 | `bin/` containing `.dart` entrypoints | `likbez-tooling` | CLI construction skills |
 
 The core plugin (`likbez`) is always part of the set — it is the plugin this
-skill ships in, and its architecture, convention, and `ast-index` skills apply
-to every Dart/Flutter project.
+skill ships in, and its architecture and convention skills apply to every
+Dart/Flutter project.
 
 Dependencies not in the table are ignored — never block on an unrecognized
 stack. If no `pubspec.yaml` exists, say this doesn't look like a Dart/Flutter
@@ -54,6 +54,22 @@ signals that triggered it (dependency name or path — with the package
 qualifier in monorepos), and one line on what the cluster teaches. List the
 non-recommended clusters too, marked "no signal found", so the user sees the
 full menu.
+
+### Optional companion tooling
+
+Mention once, below the table: Dart/Flutter repos can pair likbez with the
+third-party `ast-index` plugin for fast structural code search — it indexes
+Dart classes, mixins, extensions, extension types, and the Dart 3 class
+modifiers, and its own skill carries the command reference.
+
+    brew install defendend/ast-index/ast-index
+    ast-index install-claude-plugin
+
+State plainly that it is **optional and not a likbez dependency**: no likbez
+skill assumes it exists. It is not a likbez cluster, so it never appears in
+the Step 4 mode 2 settings write — that step still touches only keys ending
+in `@likbez`. Do not ask about it and do not install it; one mention is the
+whole obligation.
 
 ## Step 3 — ask about planned technology
 
