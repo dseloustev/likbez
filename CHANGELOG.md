@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-25
+
 ### Removed
 
 - `ast-index` skill (core), in favour of the standalone `ast-index` plugin:
