@@ -8,7 +8,7 @@
     {
       "name": "likbez",
       "source": "./plugins/likbez",
-      "description": "Core: project-setup advisor, ast-index policy, architecture and conventions."
+      "description": "Core: project-setup advisor, architecture and conventions."
     },
     {
       "name": "likbez-ui",

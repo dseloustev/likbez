@@ -1,8 +1,8 @@
 # likbez
 
-A Claude Code plugin: a Flutter/Dart knowledge pack of 33 skills in five installable cluster
-plugins — core (architecture, conventions, `ast-index`, the `project-setup`
-advisor), UI, data, testing, and tooling.
+A Claude Code plugin: a Flutter/Dart knowledge pack of 32 skills in five installable cluster
+plugins — core (architecture, conventions, the `project-setup` advisor), UI,
+data, testing, and tooling.
 
 Companion to [artel](https://github.com/dseloustev/artel), the spec-driven autonomous
 feature-development workflow plugin. The names are an era-matched pair: an *artel* is a
@@ -30,7 +30,6 @@ Core skills surface as `/likbez:<name>`, cluster skills as
 | `flutter-architecture` | MVVM, layered UI/Data/optional Domain boundaries, feature-first structure, Result & Command patterns |
 | `flutter-apply-architecture-best-practices` | The official layered-approach primer for structuring or refactoring a project |
 | `flutter-conventions` | Convention checklist for the subset DCM/analyzer do not enforce |
-| `ast-index` | Mandatory-first code-search policy for projects with the `ast-index` CLI, including the subagent prompt block |
 
 ### likbez-ui
 

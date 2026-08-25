@@ -22,7 +22,6 @@ also the per-skill provenance table referenced by `THIRD-PARTY-NOTICES.md`.*
 | Skill | Upstream | Upstream path | Last-synced | Notes |
 |---|---|---|---|---|
 | `plugins/likbez/skills/project-setup` | — | — | — | likbez original, no upstream |
-| `plugins/likbez/skills/ast-index` | AW | `.claude/rules/ast-index.md` | 0876a4d31028f753da47e7e1f91965a7feecfd47 | frontmatter added; `make g`/`make codegen` → generic codegen phrasing |
 | `plugins/likbez/skills/flutter-conventions` | AW | `.claude/skills/flutter-conventions/` | 0876a4d31028f753da47e7e1f91965a7feecfd47 | retitled; key-material/locker and `mainAccount` items generalized; `aw_api.json`/make targets/`verify`-gate refs generalized (design.md known-literal table) |
 | `plugins/likbez/skills/flutter-architecture` | MT | `flutter-architecture/` | 2fb67e384c6d91f32025bd96400d33b73f21bdc7 | preserve `metadata.author` |
 | `plugins/likbez/skills/flutter-apply-architecture-best-practices` | FT | `skills/flutter-apply-architecture-best-practices/` | 141bccd9a3a9d43d698752272ecf56a32026d174 | |

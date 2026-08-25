@@ -31,7 +31,7 @@ Each step lists the expected result; any deviation is a finding.
        /plugin install likbez@likbez
 
    Expect: core skills appear under the `likbez:` namespace —
-   `project-setup`, `ast-index`, `flutter-architecture`,
+   `project-setup`, `flutter-architecture`,
    `flutter-apply-architecture-best-practices`, `flutter-conventions`.
    Note: `flutter-conventions` is manual/composed-only
    (`disable-model-invocation: true`) — it won't auto-fire, but invoking it
@@ -65,10 +65,7 @@ Each step lists the expected result; any deviation is a finding.
    `/likbez-data:flutter-use-http-package`. Expect: the skill body loads and
    visibly shapes the answer (platform permissions, background parsing).
 
-7. **Spot-check the search policy** — `/likbez:ast-index`. Expect: the full
-   policy loads, including the verbatim subagent prompt block.
-
-8. **Cleanup (optional)** — uninstall the test plugins and remove the
+7. **Cleanup (optional)** — uninstall the test plugins and remove the
    marketplace entry; revert the sample project's `.claude/settings.json` /
    `CLAUDE.md` if apply modes 2–3 were exercised in step 3.
 

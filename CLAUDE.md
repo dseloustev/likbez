@@ -4,10 +4,9 @@ Guidance for Claude Code when working in this repository.
 
 ## Project
 
-**Likbez** — a Claude Code plugin packaging a Flutter/Dart knowledge pack: 33 skills across five cluster
+**Likbez** — a Claude Code plugin packaging a Flutter/Dart knowledge pack: 32 skills across five cluster
 plugins — `likbez` (core), `likbez-ui`, `likbez-data`, `likbez-testing`,
-`likbez-tooling` — including the `ast-index` search policy and the
-`project-setup` advisor. Companion to
+`likbez-tooling` — including the `project-setup` advisor. Companion to
 [artel](https://github.com/dseloustev/artel) (the workflow plugin): the crew works,
 likbez educates it. This repo is both the plugin and its own five-plugin marketplace
 (`.claude-plugin/marketplace.json`), installable straight from GitHub.
@@ -23,8 +22,7 @@ Read these before making changes:
 ## Source material
 
 The skills originate from a **sibling checkout** of the source project (private Flutter
-repo), normally at `../adguard-wallet`: `.claude/skills/{flutter-*,dart-*}` and
-`.claude/rules/ast-index.md`.
+repo), normally at `../adguard-wallet`: `.claude/skills/{flutter-*,dart-*}`.
 
 When porting, **genericize** — never copy project literals (wallet paths, launch flags,
 `make` targets, project names). The complete known-literal list is in design.md. After
