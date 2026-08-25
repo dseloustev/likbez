@@ -74,7 +74,9 @@ Structure & style not lint-covered:
       variable when read more than once instead of re-indexing.
 - [ ] No hand-edits to generated files (`*.g.dart`, `*.freezed.dart`, generated asset/l10n
       trees — the `analysis_options.yaml` exclude list): the fix belongs in the source (annotated
-      model, ARB file, SVG, API spec) followed by your project's codegen command.
+      model, ARB file, SVG, API spec) followed by your project's codegen command. Codegen emits
+      new symbols into the generated `part` files, so any code-search index the repo keeps (an
+      `ast-index` database, say) stays blind to them until it is refreshed.
 
 Sensitive surfaces (always high-severity findings):
 - [ ] Security-sensitive code paths — key material, credential storage, lockers, DB encryption
