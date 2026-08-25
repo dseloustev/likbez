@@ -106,7 +106,7 @@ Guidance for Claude Code when working in this repository.
 ## Project
 
 **Likbez** — a Claude Code plugin packaging a Flutter/Dart knowledge pack: 31 reference
-and how-to skills plus the `ast-index` search policy. Companion to
+and how-to skills. Companion to
 [artel](https://github.com/dseloustev/artel) (the workflow plugin): the crew works,
 likbez educates it. This repo is both the plugin and its own single-plugin marketplace
 (`.claude-plugin/marketplace.json`), installable straight from GitHub.
@@ -167,7 +167,7 @@ a routed skill (e.g. `/likbez:flutter-drift`) can read its own `references/` fil
 
 A Claude Code plugin: a Flutter/Dart knowledge pack of 32 reference and how-to skills —
 architecture, UI and layout, navigation, networking, localization, persistence, testing,
-runtime debugging, language idiom, and the `ast-index` code-search policy.
+runtime debugging, and language idiom.
 
 Companion to [artel](https://github.com/dseloustev/artel), the spec-driven autonomous
 feature-development workflow plugin. The names are an era-matched pair: an *artel* is a
@@ -271,6 +271,10 @@ design.md's known-literal table).
 - [x] Port `dart-run-static-analysis` (single-file).
 
 ## Phase 5 — runtime, tooling, ast-index (→ plugins/likbez-tooling/skills/, ast-index → plugins/likbez/skills/)
+
+> **Retired 2026-08-25.** The `ast-index` skill ported below was removed in 0.2.0 —
+> see design.md's decision log. The checkboxes stay as-completed: they record what this
+> phase did, not what ships today.
 
 - [x] Port + genericize `flutter-runtime` (single-file): conditionalize the
       `--dart-define-from-file` line (design.md known-literal table).

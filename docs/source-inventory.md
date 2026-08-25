@@ -15,9 +15,10 @@ Each entry: source purpose, then an annotation line —
 means none) · **Phase** (porting-plan phase) · **Scrub** (edits needed; "none" = verbatim
 copy). Source path for every skill: `../adguard-wallet/.claude/skills/<name>/`.
 
-Totals: **31 skills (110 files) + 1 policy doc → 32 likbez skills.** Only
-`flutter-conventions`, `flutter-runtime`, and `ast-index` need any editing; the other 29
-are verbatim copies.
+Totals at port time: **31 skills (110 files) + 1 policy doc → 32 likbez skills.** The
+policy doc's skill was retired 2026-08-25, leaving 31 ported skills plus `project-setup`.
+Only `flutter-conventions`, `flutter-runtime`, and — while it existed — `ast-index` needed
+any editing; the other 29 are verbatim copies.
 
 ## Architecture & conventions
 
@@ -172,7 +173,8 @@ are verbatim copies.
 
 ## Search policy (from `rules/`, becomes a skill)
 
-- **`ast-index`** ← `../adguard-wallet/.claude/rules/ast-index.md` — Policy making
+- **`ast-index`** — **Retired 2026-08-25** (see design.md's decision log); kept here as a
+  source record. ← `../adguard-wallet/.claude/rules/ast-index.md` — Policy making
   `ast-index` the mandatory first tool for code search: index-freshness rules
   (`update` after pull/merge/rebase, `rebuild` after clone), search rules (ast-index
   first, Grep only on empty/regex/literals), read rules (`outline` before reading any
@@ -190,5 +192,6 @@ are verbatim copies.
 - The contracts & operator docs (`autonomous-run.md`, `orchestrator-common.md`,
   `skills-reference.md`, `workflow-guide.md`, `ticket-parsing.md`,
   `deviation-protocol.md`, `path-conventions.md`) — they document the workflow system
-  and ship with artel. `rules/ast-index.md` is the single exception, ported here.
+  and ship with artel. `rules/ast-index.md` was the single exception, ported here and
+  retired in 0.2.0.
 - `rules/sensitive-paths.json` — input to artel's `sensitive_guard` hook, not knowledge.
