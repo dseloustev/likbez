@@ -171,7 +171,7 @@ any editing; the other 29 are verbatim copies.
   caret constraints, reading `dart pub outdated`, conflict-resolution workflows.
   **Files:** single-file · **Author:** — · **Phase:** 5 · **Scrub:** none
 
-## Search policy (from `rules/`, becomes a skill)
+## Search policy (from `rules/`, ported then retired)
 
 - **`ast-index`** — **Retired 2026-08-25** (see design.md's decision log); kept here as a
   source record. ← `../adguard-wallet/.claude/rules/ast-index.md` — Policy making

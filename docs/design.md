@@ -87,7 +87,8 @@ unchanged.
 
 Likbez deliberately carries **no** code-search rules. The `ast-index` skill it shipped in
 v0.1.0 — a port of the source system's `rules/ast-index.md` — was retired in 0.2.0 (see
-the decision log, 2026-08-25). Three reasons, none of them visible to the founding design:
+the decision log, 2026-08-25). Three reasons, two of them invisible to the founding
+design, the third a correction of it:
 
 - **A standalone `ast-index` plugin owns the job.** It ships the full command reference
   for the current CLI and enforces the policy with hooks rather than prose, versioned in

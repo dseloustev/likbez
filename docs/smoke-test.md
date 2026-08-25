@@ -43,11 +43,13 @@ Each step lists the expected result; any deviation is a finding.
 
    Expect, in order: a detection table naming the exact pubspec/path signal
    per recommended cluster; non-recommended clusters listed as "no signal
-   found"; one question about planned technologies; then the three apply
-   modes (print commands / write `.claude/settings.json` / CLAUDE.md note),
-   each gated on explicit consent. Sane recommendations for the sample: the
-   Flutter baseline plus whatever signal dependency was added. Nothing is
-   written without approval.
+   found"; a one-time mention of the third-party `ast-index` plugin as
+   optional companion tooling, stated as not a likbez dependency; one
+   question about planned technologies; then the three apply modes (print
+   commands / write `.claude/settings.json` / CLAUDE.md note), each gated on
+   explicit consent. Sane recommendations for the sample: the Flutter
+   baseline plus whatever signal dependency was added. Nothing is written
+   without approval.
 
 4. **Install one recommended cluster**
 
