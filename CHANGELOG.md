@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Removed
+
+- `ast-index` skill (core), in favour of the standalone `ast-index` plugin:
+  it ships a command reference current with the CLI plus enforcement hooks,
+  and both skills declared `name: ast-index`, so the two collided whenever
+  both were installed. The one Flutter/Dart fact likbez carried alone —
+  codegen emits symbols a search index cannot see until it is refreshed —
+  moved to `flutter-conventions`' generated-files item; `project-setup` now
+  mentions the standalone plugin as optional companion tooling. No likbez
+  skill depends on it. Core drops to four skills, the pack to 32.
+
 ## [0.1.0] - 2026-08-23
 
 ### Added
