@@ -311,7 +311,7 @@ Designed in docs/superpowers/specs/2026-08-07-cluster-split-advisor-upstream-syn
       `/plugin install likbez@likbez`; run `/likbez:project-setup` on a sample
       Flutter project (sane recommendations); install one recommended cluster;
       spot-check one routed skill (`/likbez-data:flutter-drift` reads its
-      `references/`), one single-file skill, and `/likbez:ast-index`.
+      `references/`), and one single-file skill.
       Operator-run — full procedure in [smoke-test.md](smoke-test.md).
 - [x] Fill README's skill catalog: one table per plugin.
 - [x] Verify `THIRD-PARTY-NOTICES.md` matches the upstream LICENSE files
