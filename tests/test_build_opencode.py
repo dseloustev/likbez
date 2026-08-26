@@ -97,6 +97,12 @@ class TestSkillBuild(BuildBase):
             self.assertEqual(src_author, gen_author,
                              name + ' lost or altered its metadata.author')
 
+    def test_project_setup_body_carries_the_opencode_note(self):
+        text = (self.out / 'skills' / 'likbez-project-setup' / 'SKILL.md'
+                ).read_text(encoding='utf-8')
+        self.assertIn('OpenCode note', text)
+        self.assertIn('.claude/settings.json', text)
+
     def test_unattributed_skills_gain_no_author(self):
         for path in sorted((self.out / 'skills').glob('*/SKILL.md')):
             name = path.parent.name[len('likbez-'):]
@@ -105,8 +111,20 @@ class TestSkillBuild(BuildBase):
             self.assertNotIn('author:', path.read_text(encoding='utf-8'),
                              name + ' grew an author it never had')
 
+    def test_no_generated_body_mentions_claude_plugin_root(self):
+        for path in sorted((self.out / 'skills').glob('*/SKILL.md')):
+            self.assertNotIn(
+                '${CLAUDE_PLUGIN_ROOT}', path.read_text(encoding='utf-8'),
+                path.parent.name + " still carries ${CLAUDE_PLUGIN_ROOT} — it "
+                'must be baked into a real path or removed')
+
 
 class TestSubtreeCopy(BuildBase):
+    def test_references_subtree_is_copied(self):
+        base = self.out / 'skills' / 'likbez-flutter-drift' / 'references'
+        self.assertTrue(base.is_dir() and any(base.iterdir()),
+                        'likbez-flutter-drift references missing')
+
     def test_scripts_subtree_is_copied(self):
         path = self.out / 'skills' / 'likbez-dart-drift' / 'scripts' / 'verify-examples.sh'
         self.assertTrue(path.is_file(), 'missing ' + str(path))
@@ -139,6 +157,26 @@ class TestDeterminism(BuildBase):
                 self.assertEqual(path.read_text(encoding='utf-8'),
                                  twin.read_text(encoding='utf-8'),
                                  path.parent.name + ' differs between builds')
+
+    def test_subtree_files_are_identical_between_builds(self):
+        with tempfile.TemporaryDirectory() as second:
+            out2 = Path(second) / 'dist'
+            proc = subprocess.run(
+                [sys.executable, str(BUILD), '--out', str(out2)],
+                capture_output=True, text=True)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            script = Path('skills') / 'likbez-dart-drift' / 'scripts' / 'verify-examples.sh'
+            twin = out2 / script
+            self.assertTrue(twin.is_file(), 'second build missed the subtree')
+            self.assertEqual((self.out / script).read_bytes(), twin.read_bytes(),
+                             'subtree file differs between builds')
+
+    def test_rerun_into_existing_out_succeeds(self):
+        proc = subprocess.run(
+            [sys.executable, str(BUILD), '--out', str(self.out)],
+            capture_output=True, text=True)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn('{} skills'.format(len(source_skills())), proc.stdout)
 
 
 if __name__ == '__main__':

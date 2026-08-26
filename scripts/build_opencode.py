@@ -52,6 +52,10 @@ BLOCK_SCALAR = re.compile(r'^[>|][+-]?\d*[+-]?$')
 DROPPED_KEYS = ('argument-hint', 'disable-model-invocation', 'allowed-tools', 'model')
 SUBTREES = ('references', 'assets', 'scripts')
 MAX_DESCRIPTION = 1024
+# The 1024-char budget is asserted on the whole emitted line (`description: `
+# plus quotes), so the value itself is clipped 2 chars short of MAX_DESCRIPTION;
+# the value therefore also honors the documented "descriptions ≤ 1024 chars".
+MAX_DESCRIPTION_VALUE = MAX_DESCRIPTION - 2
 
 
 def split_frontmatter(text):
@@ -141,7 +145,7 @@ def build_skill(src_text, folder_name):
     frontmatter = [
         'name: ' + name,
         'description: ' + yaml_quote(clip(scalar_value(header, 'description') or '',
-                                          MAX_DESCRIPTION)),
+                                          MAX_DESCRIPTION_VALUE)),
     ]
     frontmatter.extend(metadata_block(header))
     if folder_name == 'project-setup':
@@ -175,6 +179,9 @@ def main(argv=None):
                   file=sys.stderr)
             return 2
         dest = out / 'skills' / name
+        # Rebuilds into an existing --out must be idempotent: copytree cannot
+        # merge into an existing subtree, so wipe any previous build first.
+        shutil.rmtree(dest, ignore_errors=True)
         dest.mkdir(parents=True, exist_ok=True)
         parts = ['---'] + frontmatter + ['---', '', GLOSSARY.strip(),
                                          body.strip('\n') + '\n']
