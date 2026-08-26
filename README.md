@@ -20,6 +20,18 @@ recommends the matching clusters (`likbez-ui`, `likbez-data`,
 Core skills surface as `/likbez:<name>`, cluster skills as
 `/likbez-ui:<name>` etc.
 
+### OpenCode
+
+From a likbez checkout:
+
+```bash
+scripts/install-opencode.sh
+```
+
+Restart OpenCode; every skill is available as `likbez-<skill>` with its reference
+material alongside. Uninstall with `scripts/install-opencode.sh --remove`. Details and
+host differences: [docs/opencode.md](docs/opencode.md).
+
 ## What's inside
 
 ### likbez (core)

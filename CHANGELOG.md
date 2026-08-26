@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Added
+
+- OpenCode host support. `scripts/build_opencode.py` generates `likbez-`-prefixed skill
+  directories (host glossary prepended, frontmatter remapped, attribution and
+  `references/`/`assets/`/`scripts/` subtrees preserved);
+  `scripts/install-opencode.sh` installs/uninstalls into `~/.config/opencode/skills/`.
+  Claude Code operation is unchanged: the canonical `plugins/` tree is untouched.
+  See `docs/opencode.md`.
+
 ## [0.2.0] - 2026-08-25
 
 ### Removed
