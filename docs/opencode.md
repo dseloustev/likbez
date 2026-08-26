@@ -33,8 +33,10 @@ The generator makes three transformations per skill and nothing else:
    packs in OpenCode's shared flat directory.
 2. **Frontmatter remap** — `name` is prefixed; `description` is folded to one quoted
    line (≤ 1024 chars); Claude-behavioral keys (`argument-hint`,
-   `disable-model-invocation`, `allowed-tools`, `model`) are dropped; the `metadata:`
-   block is preserved verbatim — nine skills carry third-party `metadata.author`
+   `disable-model-invocation`, `allowed-tools`, `model`) are dropped, and so are
+   Claude-only keys booked inside `metadata:` (e.g. `metadata.model`); the rest of
+   the `metadata:` block (`metadata.author`, `version`, `last_modified`) is preserved
+   verbatim — nine skills carry third-party `metadata.author`
    attribution that must survive any port (see design.md, "Attribution and licensing").
 3. **Host glossary** — a short `<OPENCODE-HOST-NOTES>` block is prepended to every
    body, mapping the Claude Code dialect (`/likbez:<skill>` commands, `CLAUDE.md`)

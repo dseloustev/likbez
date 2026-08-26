@@ -337,7 +337,7 @@ record: the design.md decision log and `docs/opencode.md`.
 - [x] Installer: `scripts/install-opencode.sh` (install / `--remove`).
 - [x] Docs: `docs/opencode.md`, README install section, CHANGELOG Unreleased,
       decision log (done in Phase 7 opening commit).
-- [ ] E2E smoke on OpenCode; scrub gate green.
+- [x] E2E smoke on OpenCode; scrub gate green.
 
 ## Source → plugin map
 
