@@ -304,3 +304,15 @@ Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
   deliberately **not** wired to ast-index — that would push a third-party dependency into
   32 files of otherwise portable knowledge. Design:
   [superpowers/specs/2026-08-25-retire-ast-index-skill-design.md](superpowers/specs/2026-08-25-retire-ast-index-skill-design.md).
+- **2026-08-26 — OpenCode becomes a second host, via a generator (user-approved).**
+  `scripts/build_opencode.py` derives an OpenCode build (`likbez-`-prefixed skill
+  directories, host glossary prepended to each body, Claude-behavioral frontmatter keys
+  dropped, `metadata:` attribution preserved verbatim, `references/`/`assets/`/
+  `scripts/` subtrees copied alongside) from the canonical `plugins/*/skills/` tree;
+  `scripts/install-opencode.sh` places the artifacts into OpenCode's flat discovery
+  directories (`~/.config/opencode/skills/`). No bridge plugin and no path baking are
+  needed: likbez ships no hooks and uses no `${CLAUDE_PLUGIN_ROOT}`. Known softenings,
+  documented in docs/opencode.md: there is no marketplace/plugin namespace on OpenCode
+  (hence the flat `likbez-` prefix, user-approved over per-cluster prefixes), no command
+  wrappers (skills auto-discover), and `project-setup` ships with a host note mapping
+  its `.claude/settings.json` advice onto OpenCode equivalents.

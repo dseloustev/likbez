@@ -6,3 +6,6 @@
 # SDD scratch workspace
 .superpowers/
 docs/superpowers
+
+# OpenCode build output
+opencode/dist/

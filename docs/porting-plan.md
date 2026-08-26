@@ -326,6 +326,19 @@ Designed in docs/superpowers/specs/2026-08-07-cluster-split-advisor-upstream-syn
       `v0.1.0` — run the `bump-version` dev skill (finalize mode: manifests already
       say `0.1.0`).
 
+## Phase 7 — OpenCode host
+
+Generator + installer, with Claude Code preserved byte-for-byte on the canonical files.
+Design: `docs/superpowers/plans/2026-08-26-opencode-host.md` (local); committed
+record: the design.md decision log and `docs/opencode.md`.
+
+- [ ] Generator: `scripts/build_opencode.py` — `likbez-`-prefixed skills, frontmatter
+      remap, host glossary, subtree copy; `tests/test_build_opencode.py`.
+- [ ] Installer: `scripts/install-opencode.sh` (install / `--remove`).
+- [ ] Docs: `docs/opencode.md`, README install section, CHANGELOG Unreleased,
+      decision log (done in Phase 7 opening commit).
+- [ ] E2E smoke on OpenCode; scrub gate green.
+
 ## Source → plugin map
 
 | Source (`../adguard-wallet/.claude/…`) | Likbez | Action |
