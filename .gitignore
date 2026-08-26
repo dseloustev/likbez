@@ -9,3 +9,7 @@ docs/superpowers
 
 # OpenCode build output
 opencode/dist/
+
+# Python bytecode from the test suite
+__pycache__/
+*.pyc
