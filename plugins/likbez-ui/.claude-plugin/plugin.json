@@ -1,7 +1,7 @@
 {
   "name": "likbez-ui",
   "description": "Likbez UI cluster: adaptive and responsive layout, animations, widget previews, backend-driven UI, navigation and routing skills for Flutter.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Dmitry Seloustev",
     "email": "d.seloustev@adguard.com"

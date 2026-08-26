@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-26
+
 ### Added
 
 - OpenCode host support. `scripts/build_opencode.py` generates `likbez-`-prefixed skill
