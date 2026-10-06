@@ -17,7 +17,7 @@ scripts/install-opencode.sh --remove  # uninstall
 
 This generates the OpenCode build into `<checkout>/opencode/dist/` (gitignored) and
 places it into `~/.config/opencode/skills/likbez-<skill>/` — one directory per skill,
-each with its `references/`, `assets/` and `scripts/` subtrees. Restart OpenCode after
+each with its `references/`, `assets/`, `scripts/` and `examples/` subtrees. Restart OpenCode after
 installing. Respects `XDG_CONFIG_HOME`.
 
 There is no marketplace and no namespace on OpenCode: skills surface as

@@ -134,6 +134,11 @@ class TestSubtreeCopy(BuildBase):
         self.assertTrue(base.is_dir() and any(base.iterdir()),
                         'likbez-flutter-internationalization assets missing')
 
+    def test_examples_subtree_is_copied(self):
+        path = (self.out / 'skills' / 'likbez-dart-use-pattern-matching'
+                / 'examples' / 'json_patterns.dart')
+        self.assertTrue(path.is_file(), 'missing ' + str(path))
+
     def test_canonical_tree_is_untouched_by_generation(self):
         # The generator must never write outside --out: the source tree keeps
         # exactly the files git knows about.

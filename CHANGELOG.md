@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Fixed
+
+- OpenCode build carries each skill's `examples/` subtree too, so skills whose
+  upstream ships runnable examples keep their relative links on that host.
+
 ## [0.3.0] - 2026-08-26
 
 ### Added

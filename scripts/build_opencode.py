@@ -10,7 +10,7 @@ Claude-behavioral keys (argument-hint, disable-model-invocation, allowed-tools,
 model) are dropped — including Claude-only keys booked inside `metadata:` — and the
 `metadata:` block is otherwise preserved verbatim (nine skills carry third-party
 attribution — see docs/design.md, "Attribution and licensing").
-references/, assets/ and scripts/ subtrees are copied alongside unchanged.
+references/, assets/, scripts/ and examples/ subtrees are copied alongside unchanged.
 Canonical sources are never modified. Contract: docs/opencode.md.
 """
 import argparse
@@ -29,8 +29,8 @@ artel's Claude Code dialect; this glossary translates it. Apply it throughout:
 - A `/likbez:<skill>` or `/<cluster>:<skill>` command — the `likbez-<skill>` skill
   (this very skill if the name matches yours), loaded with the `skill` tool
   (TUI: `/likbez-<skill>`).
-- Paths like `references/...`, `assets/...`, `scripts/...` — relative to this skill's
-  own directory.
+- Paths like `references/...`, `assets/...`, `scripts/...`, `examples/...` — relative
+  to this skill's own directory.
 - `CLAUDE.md` — the host project's conventions doc (on OpenCode usually `AGENTS.md`).
 - "Claude" in the prose below — you, the agent reading this.
 </OPENCODE-HOST-NOTES>
@@ -50,7 +50,7 @@ offering to write host config files.
 VALID_NAME = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
 BLOCK_SCALAR = re.compile(r'^[>|][+-]?\d*[+-]?$')
 DROPPED_KEYS = ('argument-hint', 'disable-model-invocation', 'allowed-tools', 'model')
-SUBTREES = ('references', 'assets', 'scripts')
+SUBTREES = ('references', 'assets', 'scripts', 'examples')
 MAX_DESCRIPTION = 1024
 # The 1024-char budget is asserted on the whole emitted line (`description: `
 # plus quotes), so the value itself is clipped 2 chars short of MAX_DESCRIPTION;
