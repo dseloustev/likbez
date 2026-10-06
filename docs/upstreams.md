@@ -1,6 +1,6 @@
 # Upstream registry
 
-*Maintained by the `upstream-sync` dev skill (`.claude/skills/upstream-sync/`).
+*Maintained by the `upstream-sync` dev skill (`.opencode/skills/upstream-sync/`).
 `Last-synced` is the upstream commit this skill's content was last reconciled
 against; `—` means the baseline reconciliation has not run yet. This file is
 also the per-skill provenance table referenced by `THIRD-PARTY-NOTICES.md`.*

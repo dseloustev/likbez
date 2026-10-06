@@ -16,6 +16,10 @@ All notable changes to this project will be documented in this file. The format 
   `metadata.model` stays vendored as `sonnet`; registry last-synced SHAs refreshed.
   MT and FT upstreams checked, unchanged; the AW rows are unreachable (source path
   gone from the sibling checkout) — see `docs/upstreams.md`.
+- Repo-local dev skills (`upstream-sync`, `bump-version`) moved from `.claude/skills/`
+  to `.opencode/skills/`, OpenCode's project scope; `bump-version` frontmatter and
+  argument handling adapted to the OpenCode contract (`metadata.opencode/autoinvoke: false`,
+  the bump named in the request). `.claude/` removed.
 
 ### Fixed
 

@@ -49,6 +49,15 @@ skill recommends the repository README instead of host config writes.
 Claude Code operation is unchanged by construction: the generator never writes outside
 its `--out` directory, and the canonical `plugins/` tree is untouched.
 
+## Repo-local dev skills
+
+The repository's own maintenance skills — `upstream-sync` and `bump-version` — live in
+`.opencode/skills/`, OpenCode's project scope, and are deliberately **not** part of the
+generated pack: they operate on this repository, never on a host project. OpenCode
+discovers them automatically; `bump-version` sets `metadata.opencode/autoinvoke: false`,
+so load it explicitly (`@bump-version`, carrying the bump — e.g. `@bump-version patch`).
+On other hosts, read the `SKILL.md` files directly.
+
 ## Differences from Claude Code
 
 | Aspect | Claude Code | OpenCode |

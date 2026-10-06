@@ -57,7 +57,7 @@ likbez/
 │   ├── likbez-data/         # networking, serialization, l10n, Drift
 │   ├── likbez-testing/      # unit/widget/integration tests, mocks, coverage, analysis
 │   └── likbez-tooling/      # runtime, error fixing, idiom, CLI, dependencies
-├── .claude/skills/          # repo-local dev tooling (upstream-sync, bump-version) — not shipped
+├── .opencode/skills/        # repo-local OpenCode dev tooling (upstream-sync, bump-version) — not shipped
 ├── docs/                    # design, porting plan, source inventory, upstreams registry
 ├── THIRD-PARTY-NOTICES.md
 ├── CLAUDE.md · README.md · LICENSE · CHANGELOG.md
@@ -191,7 +191,7 @@ alongside artel:
 - Commits: conventional commits (`feat:`, `fix:`, `docs:`, `chore:`), subject line only.
 - Versioning: semver; keep `CHANGELOG.md` and all five `plugins/*/.claude-plugin/plugin.json`
   versions in lockstep. Releases are cut with the `bump-version` dev skill
-  (`.claude/skills/bump-version/`). First published tag: `v0.1.0`.
+  (`.opencode/skills/bump-version/`). First published tag: `v0.1.0`.
 - Skills are knowledge, not process: a likbez skill never invokes agents, never writes
   host state, never orchestrates. The one exception, recorded in the decision log, is
   `project-setup`, which may write host config with explicit user consent. If a ported
@@ -266,7 +266,7 @@ Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
   exactly this one skill.
 - **2026-08-07 — `upstream-sync` dev skill + `docs/upstreams.md` registry
   (user-approved).** Skill updates flow from upstreams through a repo-local dev skill
-  (`.claude/skills/upstream-sync/`, never shipped) driven by a per-skill registry
+  (`.opencode/skills/upstream-sync/`, never shipped) driven by a per-skill registry
   (upstream repo/path, last-synced SHA, genericization deltas). Four upstreams:
   `MADTeacher/mad-agents-skills`, `flutter/agent-plugins`, `dart-lang/skills`
   (canonical for `dart-*`), and `../adguard-wallet` for the in-house trio. New upstream
@@ -290,7 +290,7 @@ Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
   instead of demanding a strictly greater one. The skill stops at the annotated tag;
   push and GitHub release stay manual. `upstream-sync` no longer bumps manifests — the
   bump is sized from `[Unreleased]` at release time. Lives in
-  `.claude/skills/bump-version/`, never shipped.
+  `.opencode/skills/bump-version/`, never shipped.
 - **2026-08-25 — `ast-index` skill retired (user-approved).** Supersedes the 2026-08-07
   v1-scope decision for this one skill: `plugins/likbez/skills/ast-index/` is deleted, and
   the pack drops to 32 skills. A standalone `ast-index` plugin (CLI v3.50) ships the same
@@ -316,3 +316,14 @@ Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
   (hence the flat `likbez-` prefix, user-approved over per-cluster prefixes), no command
   wrappers (skills auto-discover), and `project-setup` ships with a host note mapping
   its `.claude/settings.json` advice onto OpenCode equivalents.
+- **2026-10-06 — Repo-local dev skills move to OpenCode's project scope (user-approved).**
+  `upstream-sync` and `bump-version` move from `.claude/skills/` to `.opencode/skills/`,
+  OpenCode's natively discovered project scope, and the `.claude/` folder is deleted
+  (`.claude/skills` remains a compatibility source, so the move is about owning the
+  canonical home, not discovery). `bump-version` is ported to the OpenCode skill contract:
+  `metadata.opencode/autoinvoke: false` replaces `disable-model-invocation: true`, `model`
+  and `argument-hint` are dropped, and the argument contract becomes "the bump named in
+  the request" (`@bump-version patch`) — OpenCode skills take no arguments of their own.
+  `upstream-sync` moves byte-identical. Accepted consequence: Claude Code no longer
+  discovers the two dev skills; its sessions read the `SKILL.md` files directly. Both
+  remain repo tooling, never shipped under `plugins/`.

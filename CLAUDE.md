@@ -32,12 +32,13 @@ any skill change, the scrub gate must pass:
 ## Maintenance
 
 Skill updates flow from upstream repos through the repo-local `upstream-sync`
-dev skill (`.claude/skills/upstream-sync/`), driven by the registry in
+dev skill (`.opencode/skills/upstream-sync/`), driven by the registry in
 [docs/upstreams.md](docs/upstreams.md). Releases are cut with the repo-local
-`bump-version` dev skill (`.claude/skills/bump-version/`): it sizes the semver
+`bump-version` dev skill (`.opencode/skills/bump-version/`): it sizes the semver
 bump from `[Unreleased]`, writes the five manifests and the CHANGELOG in
-lockstep, commits, and tags — never pushes. Both are repo tooling — never ship
-them under `plugins/`.
+lockstep, commits, and tags — never pushes. Both are OpenCode dev skills — read
+their `SKILL.md` directly under other hosts — and repo tooling, never shipped
+under `plugins/`.
 
 ## Conventions
 

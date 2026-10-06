@@ -1,9 +1,8 @@
 ---
 name: bump-version
 description: "Use when cutting a release of likbez itself — bumping the lockstep version across the five plugin manifests, dating the CHANGELOG, committing, and tagging. Repo tooling only, never shipped under plugins/."
-argument-hint: "[major|minor|patch|x.y.z] (optional; inferred when omitted)"
-disable-model-invocation: true
-model: sonnet
+metadata:
+  opencode/autoinvoke: false
 ---
 
 ## Overview
@@ -15,7 +14,9 @@ logic is specific to likbez's six version carriers — `CHANGELOG.md` plus the f
 shipped plugins. It never runs against a host project.
 
 It is a **worker that runs inline** — plain `git` and file edits, no agent delegation. Because it
-writes files, commits, and tags, it is user-invoked only (`disable-model-invocation: true`).
+writes files, commits, and tags, it is user-invoked only: `metadata.opencode/autoinvoke: false`
+keeps it out of the model's skill list, so load it explicitly — mention `@bump-version` in the
+request, carrying the optional bump when there is one (e.g. `@bump-version patch`).
 
 The skill stops at the tag. Pushing and publishing a GitHub release stay a deliberate manual step.
 The local smoke test ([docs/smoke-test.md](../../../docs/smoke-test.md)) is the operator's
@@ -64,8 +65,9 @@ should see every failure in one pass — then report what failed and stop, chang
 
 ### Step 3: Decide the new version
 
-**Argument:** `$ARGUMENTS` (blank when the skill was invoked without one). It decides how
-`NEW_VERSION` is reached:
+**Requested bump:** the version or bump word carried by the request that led here — `x.y.z`,
+`major`, `minor`, or `patch` — blank when the request named none. It decides how `NEW_VERSION`
+is reached:
 
 | Argument | Behaviour |
 |----------|-----------|
@@ -127,9 +129,9 @@ not the README. Those are separate commits if they are due at all.
    `git commit -m "chore(release): v<NEW_VERSION>"`.
    Name the paths explicitly rather than using `git add -A` or `git commit -a` — the tree was clean
    at Step 1, so the two are equivalent today, but an explicit stage keeps that true if a later
-   step ever writes something else. **Subject line only, no trailers** — CLAUDE.md's commit
-   convention overrides the harness default of appending `Co-Authored-By:` / `Claude-Session:`
-   lines.
+   step ever writes something else. **Subject line only, no trailers** — the repo's commit
+   convention (`CLAUDE.md`, "Conventions") overrides any harness default of appending co-author
+   trailers.
 
 ### Step 6: Tag
 
@@ -173,10 +175,10 @@ Print a concise summary:
 
 ## Examples
 
-- `bump-version` with the manifests at `0.1.0` and no `v0.1.0` tag — finalize: propose
+- `@bump-version` with the manifests at `0.1.0` and no `v0.1.0` tag — finalize: propose
   `0.1.0 → 0.1.0`, confirm, date the CHANGELOG, commit, tag. Manifests untouched.
-- `bump-version` after `v0.1.0` is tagged and `[Unreleased]` has an `Added` section — propose
+- `@bump-version` after `v0.1.0` is tagged and `[Unreleased]` has an `Added` section — propose
   `0.1.0 → 0.2.0`, confirm, then write all six carriers, commit, tag.
-- `bump-version patch` — force `0.1.0 → 0.1.1` regardless of what the section contains.
-- `bump-version 1.0.0` — the first stable release: validated as semver and greater than current,
+- `@bump-version patch` — force `0.1.0 → 0.1.1` regardless of what the section contains.
+- `@bump-version 1.0.0` — the first stable release: validated as semver and greater than current,
   then confirmed like any other.
