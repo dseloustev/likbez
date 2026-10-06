@@ -1,7 +1,7 @@
 {
   "name": "likbez",
   "description": "Likbez core: project-setup advisor, Flutter architecture and convention skills.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "Dmitry Seloustev",
     "email": "d.seloustev@adguard.com"

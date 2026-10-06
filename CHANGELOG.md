@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-06
+
 ### Changed
 
 - Synced three skills with upstream (`dart-lang/skills`): `dart-use-pattern-matching`
