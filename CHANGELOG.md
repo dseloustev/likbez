@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Changed
+
+- Synced three skills with upstream (`dart-lang/skills`): `dart-use-pattern-matching`
+  (anti-pattern guidance, path/`split()` token patterns, JSON example),
+  `dart-build-cli-app` (restructured with streams, subprocess/AOT and signal-handling
+  material, plus examples and references), and `dart-migrate-to-checks-package`
+  (full rewrite: workflow, matcher→checks mapping, discovery strategies).
+  `metadata.model` stays vendored as `sonnet`; registry last-synced SHAs refreshed.
+  MT and FT upstreams checked, unchanged; the AW rows are unreachable (source path
+  gone from the sibling checkout) — see `docs/upstreams.md`.
+
 ### Fixed
 
 - OpenCode build carries each skill's `examples/` subtree too, so skills whose
