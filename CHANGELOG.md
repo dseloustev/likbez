@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-10-27
+
 ### Changed
 
 - Synced two skills with upstream: `flutter-add-widget-preview` (`flutter/agent-plugins`)

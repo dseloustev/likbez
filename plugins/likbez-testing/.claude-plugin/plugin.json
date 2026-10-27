@@ -1,7 +1,7 @@
 {
   "name": "likbez-testing",
   "description": "Likbez testing cluster: unit, widget, and integration testing, mocks, coverage, and static analysis skills for Flutter and Dart.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": {
     "name": "Dmitry Seloustev",
     "email": "d.seloustev@adguard.com"

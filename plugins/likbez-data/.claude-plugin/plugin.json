@@ -1,7 +1,7 @@
 {
   "name": "likbez-data",
   "description": "Likbez data cluster: networking, JSON serialization, internationalization, and Drift persistence skills for Flutter and Dart.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": {
     "name": "Dmitry Seloustev",
     "email": "d.seloustev@adguard.com"
