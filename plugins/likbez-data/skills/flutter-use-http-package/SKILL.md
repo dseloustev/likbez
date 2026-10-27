@@ -2,7 +2,6 @@
 name: flutter-use-http-package
 description: Use the `http` package to execute GET, POST, PUT, or DELETE requests. Use when you need to fetch from or send data to a REST API.
 metadata:
-  model: sonnet
   last_modified: Tue, 21 Apr 2026 21:36:42 GMT
 ---
 # Implementing Flutter Networking

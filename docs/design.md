@@ -327,3 +327,15 @@ Full operator procedure with expected results: [smoke-test.md](smoke-test.md).
   `upstream-sync` moves byte-identical. Accepted consequence: Claude Code no longer
   discovers the two dev skills; its sessions read the `SKILL.md` files directly. Both
   remain repo tooling, never shipped under `plugins/`.
+- **2026-10-27 — Skills stop pinning a model (user-approved).** All 20 skills that
+  carried a model declaration drop it: 18 `metadata.model` entries sitting beside
+  `last_modified` (`sonnet` ×9, `models/gemini-3.1-pro-preview` ×9, `opus` ×2), the
+  whole `metadata:` block on `dart-build-cli-app` (it held nothing else), and the
+  top-level `model` on `flutter-runtime`. Every skill now runs on whatever model the
+  host session has chosen, so neither a Claude alias nor a Gemini id can override the
+  operator's choice, and the Gemini ids — meaningless on a Claude host — stop
+  travelling. The OpenCode generator already dropped these keys, so its output is
+  unchanged except that `dart-build-cli-app` no longer emits an empty `metadata:` line.
+  Enforcement moved onto the sync path: `upstream-sync` strips model keys from every
+  incoming upstream change, and the registry's Notes now record the drop as a
+  genericization delta in place of the previous "keep vendored model" instructions.

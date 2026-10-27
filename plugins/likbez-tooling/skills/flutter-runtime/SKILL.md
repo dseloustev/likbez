@@ -2,7 +2,6 @@
 name: flutter-runtime
 description: "Runtime debugging guide for Flutter apps using Dart MCP tools. Covers connection workflows (launch_app vs VS Code DTD), hot reload/restart, widget tree inspection, runtime error diagnosis, and app log reading."
 allowed-tools: Read, Glob, Grep, mcp__dart__launch_app, mcp__dart__connect_dart_tooling_daemon, mcp__dart__get_app_logs, mcp__dart__get_runtime_errors, mcp__dart__get_widget_tree, mcp__dart__get_selected_widget, mcp__dart__set_widget_selection_mode, mcp__dart__hot_reload, mcp__dart__hot_restart, mcp__dart__stop_app, mcp__dart__hover, mcp__dart__list_running_apps, mcp__dart__list_devices
-model: sonnet
 ---
 
 # Flutter Runtime Debugging

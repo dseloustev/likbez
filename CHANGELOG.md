@@ -16,6 +16,12 @@ All notable changes to this project will be documented in this file. The format 
   banning it. `metadata.model` stays vendored as `sonnet`; registry last-synced SHAs
   refreshed for the FT and DL rows. MT checked and unchanged; the AW rows remain
   unreachable (source path gone from the sibling checkout) — see `docs/upstreams.md`.
+- Shipped skills no longer pin a model: all 20 declarations are gone (18
+  `metadata.model` entries, the `metadata:` block that held only a model on
+  `dart-build-cli-app`, and `flutter-runtime`'s top-level key), so every skill runs on
+  the host session's default model instead of `sonnet`, `opus` or
+  `models/gemini-3.1-pro-preview`. `upstream-sync` now strips model keys from incoming
+  upstream changes and the registry records the drop as a genericization delta.
 
 ## [0.3.1] - 2026-10-06
 

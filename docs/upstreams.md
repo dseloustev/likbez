@@ -17,6 +17,11 @@ also the per-skill provenance table referenced by `THIRD-PARTY-NOTICES.md`.*
 `dart-*` skills sync from DL only — the copies of them inside
 `flutter/agent-plugins` are ignored by design.
 
+No shipped skill pins a model. `metadata.model` (and the one top-level `model` on
+`flutter-runtime`) is dropped on sync, so every skill runs on whatever model the
+host session has chosen; upstream model values — Claude aliases and Gemini ids
+alike — are never carried over.
+
 ## Skills
 
 | Skill | Upstream | Upstream path | Last-synced | Notes |
@@ -34,7 +39,7 @@ also the per-skill provenance table referenced by `THIRD-PARTY-NOTICES.md`.*
 | `plugins/likbez-ui/skills/flutter-navigation` | MT | `flutter-navigation/` | 2fb67e384c6d91f32025bd96400d33b73f21bdc7 | preserve `metadata.author` |
 | `plugins/likbez-ui/skills/flutter-setup-declarative-routing` | FT | `skills/flutter-setup-declarative-routing/` | 90fa51dc9d1bd6694cee226397e08ec8193e9e69 | |
 | `plugins/likbez-data/skills/flutter-networking` | MT | `flutter-networking/` | 2fb67e384c6d91f32025bd96400d33b73f21bdc7 | preserve `metadata.author` |
-| `plugins/likbez-data/skills/flutter-use-http-package` | FT | `skills/flutter-use-http-package/` | 90fa51dc9d1bd6694cee226397e08ec8193e9e69 | keep `metadata.model: sonnet` (upstream retargeted to Gemini) |
+| `plugins/likbez-data/skills/flutter-use-http-package` | FT | `skills/flutter-use-http-package/` | 90fa51dc9d1bd6694cee226397e08ec8193e9e69 | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
 | `plugins/likbez-data/skills/flutter-implement-json-serialization` | FT | `skills/flutter-implement-json-serialization/` | 90fa51dc9d1bd6694cee226397e08ec8193e9e69 | |
 | `plugins/likbez-data/skills/flutter-internationalization` | MT | `flutter-internationalization/` | 2fb67e384c6d91f32025bd96400d33b73f21bdc7 | preserve `metadata.author` |
 | `plugins/likbez-data/skills/flutter-setup-localization` | FT | `skills/flutter-setup-localization/` | 90fa51dc9d1bd6694cee226397e08ec8193e9e69 | |
@@ -43,16 +48,16 @@ also the per-skill provenance table referenced by `THIRD-PARTY-NOTICES.md`.*
 | `plugins/likbez-testing/skills/flutter-testing` | MT | `flutter-testing/` | 2fb67e384c6d91f32025bd96400d33b73f21bdc7 | preserve `metadata.author` |
 | `plugins/likbez-testing/skills/flutter-add-widget-test` | FT | `skills/flutter-add-widget-test/` | 90fa51dc9d1bd6694cee226397e08ec8193e9e69 | |
 | `plugins/likbez-testing/skills/flutter-add-integration-test` | FT | `skills/flutter-add-integration-test/` | 90fa51dc9d1bd6694cee226397e08ec8193e9e69 | |
-| `plugins/likbez-testing/skills/dart-add-unit-test` | DL | `skills/dart-add-unit-test/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored metadata (`model: sonnet`); upstream retargeted to Gemini |
-| `plugins/likbez-testing/skills/dart-generate-test-mocks` | DL | `skills/dart-generate-test-mocks/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored metadata (`model: sonnet`); upstream retargeted to Gemini |
-| `plugins/likbez-testing/skills/dart-collect-coverage` | DL | `skills/dart-collect-coverage/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored metadata (`model: sonnet`); upstream retargeted to Gemini |
-| `plugins/likbez-testing/skills/dart-migrate-to-checks-package` | DL | `skills/dart-migrate-to-checks-package/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep `metadata.model: sonnet`; trailing whitespace trimmed vs upstream |
-| `plugins/likbez-testing/skills/dart-run-static-analysis` | DL | `skills/dart-run-static-analysis/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored metadata (`model: sonnet`); upstream retargeted to Gemini |
-| `plugins/likbez-tooling/skills/flutter-runtime` | AW | `.claude/skills/flutter-runtime/` | 0876a4d31028f753da47e7e1f91965a7feecfd47 | launch-flag line conditionalized (design.md known-literal table). Unreachable at the 2026-10-27 check: `.claude/skills/` is still absent from the sibling checkout (gitignored there), and the former fallback `wallet-core/dart/.claude/skills/flutter-runtime/` is gone too — no source copy remains anywhere in the wallet; registry re-point pending |
-| `plugins/likbez-tooling/skills/dart-fix-runtime-errors` | DL | `skills/dart-fix-runtime-errors/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored metadata (`model: opus`); upstream retargeted to Gemini |
-| `plugins/likbez-tooling/skills/dart-use-pattern-matching` | DL | `skills/dart-use-pattern-matching/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored metadata (`model: sonnet`); upstream retargeted to Gemini |
-| `plugins/likbez-tooling/skills/dart-build-cli-app` | DL | `skills/dart-build-cli-app/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored `metadata.model: sonnet`; upstream dropped its metadata block |
-| `plugins/likbez-tooling/skills/dart-resolve-package-conflicts` | DL | `skills/dart-resolve-package-conflicts/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | keep vendored metadata (`model: opus`); upstream retargeted to Gemini |
+| `plugins/likbez-testing/skills/dart-add-unit-test` | DL | `skills/dart-add-unit-test/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
+| `plugins/likbez-testing/skills/dart-generate-test-mocks` | DL | `skills/dart-generate-test-mocks/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
+| `plugins/likbez-testing/skills/dart-collect-coverage` | DL | `skills/dart-collect-coverage/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
+| `plugins/likbez-testing/skills/dart-migrate-to-checks-package` | DL | `skills/dart-migrate-to-checks-package/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); trailing whitespace trimmed vs upstream |
+| `plugins/likbez-testing/skills/dart-run-static-analysis` | DL | `skills/dart-run-static-analysis/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
+| `plugins/likbez-tooling/skills/flutter-runtime` | AW | `.claude/skills/flutter-runtime/` | 0876a4d31028f753da47e7e1f91965a7feecfd47 | launch-flag line conditionalized (design.md known-literal table); top-level `model` dropped (host default applies). Unreachable at the 2026-10-27 check: `.claude/skills/` is still absent from the sibling checkout (gitignored there), and the former fallback `wallet-core/dart/.claude/skills/flutter-runtime/` is gone too — no source copy remains anywhere in the wallet; registry re-point pending |
+| `plugins/likbez-tooling/skills/dart-fix-runtime-errors` | DL | `skills/dart-fix-runtime-errors/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
+| `plugins/likbez-tooling/skills/dart-use-pattern-matching` | DL | `skills/dart-use-pattern-matching/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
+| `plugins/likbez-tooling/skills/dart-build-cli-app` | DL | `skills/dart-build-cli-app/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream dropped its metadata block, so the copy matches |
+| `plugins/likbez-tooling/skills/dart-resolve-package-conflicts` | DL | `skills/dart-resolve-package-conflicts/` | bf984f3ef223dd85e92036f934bbcb6bf301e4ce | drop `metadata.model` (host default applies); upstream retargeted to Gemini |
 
 ## Known candidates (not adopted)
 

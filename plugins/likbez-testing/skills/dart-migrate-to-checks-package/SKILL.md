@@ -4,7 +4,6 @@ description: |-
   Replace the usage of `expect` and similar functions from `package:matcher`
   to `package:checks` equivalents.
 metadata:
-  model: sonnet
   last_modified: Tue, 09 Jun 2026 19:30:00 GMT
 ---
 # Migrating Dart Tests to Package Checks

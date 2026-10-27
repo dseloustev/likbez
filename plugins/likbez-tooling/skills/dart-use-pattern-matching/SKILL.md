@@ -9,7 +9,6 @@ description: >-
   on sealed classes. Don't use for simple boolean conditions, single-variable
   type promotion (use `is`), or basic collection filtering.
 metadata:
-  model: sonnet
   last_modified: Tue, 13 Oct 2026 19:45:00 GMT
 ---
 # Implementing Dart Patterns

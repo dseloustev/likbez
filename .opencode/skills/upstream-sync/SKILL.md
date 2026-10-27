@@ -85,6 +85,10 @@ Per approved skill, in its own commit:
 
 - `dart-*` skills sync from `dart-lang/skills` only; the copies inside
   `flutter/agent-plugins` are ignored by design.
+- Shipped skills carry no model pinning. Strip `metadata.model` and any
+  top-level `model` from an incoming upstream change, and drop a `metadata:`
+  block left holding nothing else. Every skill runs on the host session's
+  model; upstream values (Claude aliases and Gemini ids alike) never land.
 - Nothing is ever auto-added or auto-removed; every change under `plugins/`
   goes through operator approval.
 - This skill is repo tooling — it must never be moved under `plugins/`.

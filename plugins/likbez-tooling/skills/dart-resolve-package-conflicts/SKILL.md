@@ -2,7 +2,6 @@
 name: dart-resolve-package-conflicts
 description: Workflow for fixing package version conflicts. Use this when `pub get` fails due to incompatible package versions.
 metadata:
-  model: opus
   last_modified: Fri, 24 Apr 2026 15:11:14 GMT
 ---
 # Managing Dart Dependencies
