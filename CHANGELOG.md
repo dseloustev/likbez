@@ -13,8 +13,8 @@ All notable changes to this project will be documented in this file. The format 
   Parameters reference, corrects the previewer API (`builder.build()`, `PreviewThemeData`
   as an abstract `apply()`) and raises the required Flutter version to 3.47+; the
   pattern-matching skill's rule 5 now covers multi-field object destructuring instead of
-  banning it. `metadata.model` stays vendored as `sonnet`; registry last-synced SHAs
-  refreshed for the FT and DL rows. MT checked and unchanged; the AW rows remain
+  banning it. Registry last-synced SHAs refreshed for the FT and DL rows. MT checked
+  and unchanged; the AW rows remain
   unreachable (source path gone from the sibling checkout) — see `docs/upstreams.md`.
 - Shipped skills no longer pin a model: all 20 declarations are gone (18
   `metadata.model` entries, the `metadata:` block that held only a model on
