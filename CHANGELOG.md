@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Changed
+
+- Synced two skills with upstream: `flutter-add-widget-preview` (`flutter/agent-plugins`)
+  and `dart-use-pattern-matching` (`dart-lang/skills`). The preview skill gains a Preview
+  Parameters reference, corrects the previewer API (`builder.build()`, `PreviewThemeData`
+  as an abstract `apply()`) and raises the required Flutter version to 3.47+; the
+  pattern-matching skill's rule 5 now covers multi-field object destructuring instead of
+  banning it. `metadata.model` stays vendored as `sonnet`; registry last-synced SHAs
+  refreshed for the FT and DL rows. MT checked and unchanged; the AW rows remain
+  unreachable (source path gone from the sibling checkout) — see `docs/upstreams.md`.
+
 ## [0.3.1] - 2026-10-06
 
 ### Changed
